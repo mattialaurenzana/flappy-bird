@@ -1,13 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
-import BgContainer from './components/ui/bgcontainer/BgContainer';
 import { Route, Routes} from 'react-router-dom'
+import SCREENS from './routes/screenName';
+import Home from './screens/home/Home';
 
 function App() {
   return (
     <div className="App">
         <Routes>
-          <Route path={'/'} element={<BgContainer/>} />
+          <Route path={SCREENS.home} element={<Home/>} />
         </Routes>
     </div>
   );
