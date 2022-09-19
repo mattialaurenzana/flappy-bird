@@ -1,8 +1,8 @@
 const SCREENS = {
-    home: '/',
-    about: '/about',
-    aboutWithParams: '/about/:id',
-    login: '/login'
+    home: '/', 
+    game: '/game',
+    winLose: '/winlose',
+    ranking: '/ranking'
 }
 
 export default SCREENS

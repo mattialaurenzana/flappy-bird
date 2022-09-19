@@ -1,16 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
+import BgContainer from './components/ui/bgcontainer/BgContainer';
+import { Route, Routes} from 'react-router-dom'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <div className='container'>
-          <div className='bg-container'>
-          </div>
-          <img src={require('./assets/image/moon.png')} className='moon'></img>
-        </div>
-      </header>
+        <Routes>
+          <Route path={'/'} element={<BgContainer/>} />
+        </Routes>
     </div>
   );
 }

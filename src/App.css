@@ -1,59 +1,12 @@
 .App {
   text-align: center;
-}
-
-.container {
-  position: relative;
-  height: 500px;
-  width: 500px;
+  height: 100vh;
+  width: 100vw;
   display: flex;
   justify-content: center;
-  overflow: hidden;
+  align-items: center;
 }
 
-.bg-container {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: url('./assets/image/sfondo.jpg');
-}
-
-.moon {
-  position: absolute;
-  bottom: -1500px;
-  background: url('./assets/image/moon.png');
-  animation: moving-images 300s linear infinite;
-  -webkit-animation: moving-images 300s linear infinite;
-  -moz-animation: moving-images 300s linear infinite;
-  -o-animation: moving-images 300s linear infinite;
-}
-
-
-@keyframes moving-images {
-  100% {
-    transform: rotate(-360deg);
-  }
-}
-
-@-moz-keyframes moving-images {
-  100% {
-    transform: rotate(-360deg);
-  }
-}
-
-@-webkit-keyframes moving-images {
-  100% {
-    transform: rotate(-360deg);
-  }
-}
-
-@-o-keyframes moving-images {
-  100% {
-    transform: rotate(-360deg);
-  }
-}
 
 .App-logo {
   height: 40vmin;
