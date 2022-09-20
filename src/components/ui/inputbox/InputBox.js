@@ -29,7 +29,7 @@ function InputBox(props) {
 InputBox.propTypes = {
   type: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
-  callbackChange: PropTypes.func.isRequired,
+  // callbackChange: PropTypes.func.isRequired,
 };
 
 InputBox.defaultProps = {
