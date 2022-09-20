@@ -18,6 +18,13 @@
 
 }
 
+.moon-container{
+  position: absolute;
+  bottom: -80px;
+  left: 0;
+  max-width: 100vw;
+}
+
 .moon {
   position: absolute;
   bottom: -1500px;

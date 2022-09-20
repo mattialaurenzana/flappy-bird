@@ -1,6 +1,6 @@
 import { SpriteAnimator } from 'react-sprite-animator';
 import BgContainer from '../../components/ui/bgcontainer/BgContainer';
-import Tutorial from '../../components/tutorial/Tutorial';
+import Tutorial from '../../components/ui/tutorial/Tutorial';
 import {useState,useEffect} from 'react'
 import './Home.css'
 import Button from '../../components/ui/button/Button';
@@ -10,22 +10,24 @@ import InputBox from '../../components/ui/inputbox/InputBox';
 function Home() {
 
     const [state,setState] = useState({
-        tutIsVisible : 'visible'
+        tutIsVisible : true
     })
 
     function closeWindowTut(){
        setState({
-        tutIsVisible : 'not-visible'
+        tutIsVisible : false
        })
     }
 
     return (
         <>
             <BgContainer />
-            <Tutorial 
-                callback={closeWindowTut}
-                className={state.tutIsVisible}
-            />
+            {
+                tutIsVisible === true &&
+                <Tutorial 
+                    callback={closeWindowTut}
+                />
+            }
             <div className='home-container'>
                 <h1 className='title'>Flappy Ufo</h1>
                 <div className='img-container'>

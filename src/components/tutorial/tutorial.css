@@ -14,13 +14,6 @@
     
 }
 
-.not-visible{
-    opacity: 0;
-}
-
-.visible{
-    opacity: 1;
-}
 
 .close-tutorial{
     position: absolute;

@@ -12,7 +12,7 @@ function Tutorial(props){
     return(
         <>
         
-            <div className={`tutorial-container ${props.className}`}>
+            <div className={`tutorial-container`}>
                 <div className='close-tutorial'>
                     <AiFillCloseCircle className='close-icon' onClick={closeTut}/>
                 </div>
