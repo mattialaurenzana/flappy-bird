@@ -20,19 +20,30 @@
 
 .moon-container{
   position: absolute;
-  bottom: -80px;
+  bottom: -45px;
   left: 0;
-  max-width: 100vw;
-}
+  width: 100%;
+  height: 300px;
+  background: url('../../../assets/image/flat-moon.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: repeat;
 
-.moon {
-  position: absolute;
-  bottom: -1500px;
   animation: moving-images 300s linear infinite;
   -webkit-animation: moving-images 300s linear infinite;
   -moz-animation: moving-images 300s linear infinite;
   -o-animation: moving-images 300s linear infinite;
+
 }
+
+/* .moon {
+  position: absolute;
+  bottom: -1500px;
+
+
+} */
+ 
+
 
 @keyframes moving-bg {
   0% {
@@ -54,7 +65,7 @@
     50% {
       left: -9999px;
     }
-    0%{
+    100%{
       left: 0;
     }
 
@@ -67,7 +78,7 @@
     50% {
       left: -9999px;
     }
-    0%{
+    100%{
       left: 0;
     }
   }
@@ -79,7 +90,7 @@
     50% {
       left: -9999px;
     }
-    0%{
+    100%{
       left: 0;
     }
   }
@@ -91,7 +102,7 @@
     50% {
       left: -9999px;
     }
-    0%{
+    100%{
       left: 0;
     }
   }

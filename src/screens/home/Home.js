@@ -10,7 +10,7 @@ import InputBox from '../../components/ui/inputbox/InputBox';
 function Home() {
 
     const [state,setState] = useState({
-        tutIsVisible : true
+        tutIsVisible : false
     })
 
     function closeWindowTut(){
@@ -23,7 +23,7 @@ function Home() {
         <>
             <BgContainer />
             {
-                tutIsVisible === true &&
+                state.tutIsVisible === true &&
                 <Tutorial 
                     callback={closeWindowTut}
                 />
