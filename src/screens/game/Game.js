@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import './game.css'
-import eventsBus from '../../events/eventsBus'
 
 function Game() {
     const [state, setState] = useState({
@@ -13,16 +12,16 @@ function Game() {
 
 
 
-    // useEffect(() => {
-    //     const interval = setInterval(() => {
-    //         actualScore = actualScore + 1
-    //         setState({
-    //             ...state,
-    //             score: actualScore
-    //         })
-    //     }, 1000);
-    //     return () => clearInterval(interval);
-    // }, []);
+    useEffect(() => {
+        const interval = setInterval(() => {
+            actualScore = actualScore + 1
+            setState({
+                ...state,
+                score: actualScore
+            })
+        }, 1000);
+        return () => clearInterval(interval);
+    }, []);
 
     function jumpShuttle(){
         setState({
