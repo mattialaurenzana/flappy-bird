@@ -7,9 +7,12 @@ function BgContainer() {
             <div className="container">
                 <div className="bg-container"></div>
             </div>
-            <div className="moon-container">
-                <img className='flat-moon' src={require('../../../assets/image/flat-moon.png')}></img>
-            </div></>
+            <div className='content-block'>
+                <div className='moon-container'>
+                </div>
+            </div>
+
+        </>
     );
 }
 export default BgContainer;
