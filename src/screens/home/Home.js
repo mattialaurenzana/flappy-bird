@@ -1,54 +1,55 @@
 import { SpriteAnimator } from 'react-sprite-animator';
 import BgContainer from '../../components/ui/bgcontainer/BgContainer';
-import Tutorial from '../../components/tutorial/Tutorial';
-import {useState,useEffect} from 'react'
+import Tutorial from '../../components/ui/tutorial/Tutorial';
+import { useState, useEffect } from 'react'
 import './Home.css'
 import Button from '../../components/ui/button/Button';
 import InputBox from '../../components/ui/inputbox/InputBox';
+import { AiFillQuestionCircle } from 'react-icons/ai';
 
 
 function Home() {
 
-    const [state,setState] = useState({
-        tutIsVisible : 'visible'
+    const [state, setState] = useState({
+        tutIsVisible: false
     })
 
-    function closeWindowTut(){
-       setState({
-        tutIsVisible : 'not-visible'
-       })
+    function closeWindowTutorial() {
+        setState({
+            ...state,
+            tutIsVisible: false
+        })
+    }
+
+    function openWindowTutorial() {
+        setState({
+            ...state,
+            tutIsVisible: true
+        })
     }
 
     return (
         <>
             <BgContainer />
-            <Tutorial 
-                callback={closeWindowTut}
-                className={state.tutIsVisible}
-            />
+            {state.tutIsVisible && <Tutorial
+                callback={closeWindowTutorial}
+            />}
             <div className='home-container'>
                 <h1 className='title'>Flappy Ufo</h1>
                 <div className='img-container'>
-                    {/* <SpriteAnimator
-                        sprite={'./heart.svg'}
-                        width={36}
-                        height={36}
-                        shouldAnimate={true}
-                        startFrame={0}
-                        stopLastFrame={true}
-                    /> */}
+                    <img className='spaceshuttle-spritesheet pixelart' src={require('../../assets/image/sprite-sheet.png')}/>
                 </div>
                 <InputBox
-                placeholder={'Inserire username...'}
+                    placeholder={'Inserire username...'}
                 />
                 <Button
-                label={'Start'}
+                    label={'Start'}
                 />
                 <Button
-                label={'Classifica'}
+                    label={'Classifica'}
                 />
             </div>
-
+            <AiFillQuestionCircle className='tutorial-icon' onClick={openWindowTutorial} />
         </>
     );
 

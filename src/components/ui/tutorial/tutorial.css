@@ -13,15 +13,6 @@
     transform: translate(-50%,-50%);
     
 }
-
-.not-visible{
-    opacity: 0;
-}
-
-.visible{
-    opacity: 1;
-}
-
 .close-tutorial{
     position: absolute;
     top: -6px;

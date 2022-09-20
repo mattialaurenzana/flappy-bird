@@ -1,16 +1,9 @@
-.title{
+.title {
     color: white;
     margin-top: 80px;
 }
 
-.img-container{
-    background-color: black;
-    height: 180px;
-    width: 180px;
-    margin-top: 20px;
-}
-
-.home-container{
+.home-container {
     position: absolute;
     height: 100vh;
     top: 0;
@@ -18,4 +11,55 @@
     align-items: center;
     flex-direction: column;
     gap: 30px;
+}
+
+.tutorial-icon {
+    z-index: 5;
+    height: 40px;
+    width: 40px;
+    fill: white;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 30px;
+}
+
+/* Home shuttle animation */
+:root {
+    --pixel-size: 2;
+}
+
+.img-container {
+    /* height: 100px;
+    width: 100px; */
+    height: calc(100px * var(--pixel-size));
+    width: calc(100px * var(--pixel-size));
+    overflow: hidden;
+    position: relative;
+}
+
+.spaceshuttle-spritesheet {
+    animation: moveSpriteSheet 2s steps(7) infinite;
+    width: calc(698px * var(--pixel-size));
+    position: absolute;
+    left: 0;
+}
+
+.shuttle-explosion {
+    top: -288px;
+}
+
+.pixelart {
+    image-rendering: pixelated;
+}
+
+
+@keyframes moveSpriteSheet {
+    from {
+        transform: translate3d(0px, 0, 0)
+    }
+
+    to {
+        transform: translate3d(-100%, 0, 0)
+    }
 }

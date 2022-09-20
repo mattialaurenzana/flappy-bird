@@ -1,5 +1,5 @@
 import './tutorial.css';
-import {AiFillCloseCircle} from 'react-icons/ai';
+import {AiFillCloseCircle,} from 'react-icons/ai';
 
 function Tutorial(props){
 
