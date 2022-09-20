@@ -9,7 +9,7 @@ function Button(props) {
 
     return (
         <div
-            className={` button ${props.cssClass}`}
+            className={` button glow-on-hover ${props.cssClass}`}
             onClick={handleClick}
         >
             {props.label}
