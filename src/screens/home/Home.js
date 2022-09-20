@@ -1,7 +1,7 @@
 import { SpriteAnimator } from 'react-sprite-animator';
 import BgContainer from '../../components/ui/bgcontainer/BgContainer';
 import Tutorial from '../../components/ui/tutorial/Tutorial';
-import { useState, useEffect } from 'react'
+import {useState,useEffect} from 'react'
 import './Home.css'
 import Button from '../../components/ui/button/Button';
 import InputBox from '../../components/ui/inputbox/InputBox';
