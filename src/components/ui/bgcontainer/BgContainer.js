@@ -1,13 +1,12 @@
 import './BgContainer.css'
 import '../../tutorial/Tutorial';
-import Tutorial from '../../tutorial/Tutorial';
 import { SpriteAnimator } from 'react-sprite-animator';
 
 function BgContainer() {
 
     return (
         <div className='container'>
-            {/* <Tutorial /> */}
+           
             <SpriteAnimator 
                 width={300}
                 height={300}
@@ -24,7 +23,10 @@ function BgContainer() {
             />
             <div className='bg-container'>
             </div>
-            <img src={require('../../../assets/image/moon.png')} className='moon'></img>
+            <div className='moon-container'>
+                <img src={require('../../../assets/image/flat-moon.png')} className='moon'></img>
+            </div>
+           
         </div>
     )
 

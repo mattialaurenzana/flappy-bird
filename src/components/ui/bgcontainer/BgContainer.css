@@ -8,45 +8,79 @@
     overflow: hidden;
   }
   
-  /* .bg-container {
+  .bg-container {
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     background: url('../../../assets/image/sfondo.jpg');
-  } */
+  }
+
+  .moon-container{
+    position: absolute;
+    bottom: -80px;
+    left: 0;
+    height: 552px;
+    width: 100vw;
+  }
   
   .moon {
     position: absolute;
-    bottom: -1500px;
-    animation: moving-images 300s linear infinite;
-    -webkit-animation: moving-images 300s linear infinite;
-    -moz-animation: moving-images 300s linear infinite;
-    -o-animation: moving-images 300s linear infinite;
+    bottom: -80px;
+    left: 0;
+    animation: moving-images 400s ease infinite;
+    -webkit-animation: moving-images 400s ease infinite;
+    -moz-animation: moving-images 400s ease infinite;
+    -o-animation: moving-images 400s ease infinite;
   }
 
   
   @keyframes moving-images {
-    100% {
-      transform: rotate(-360deg);
+    0%{
+      left: 0;
     }
+    50% {
+      left: -9999px;
+    }
+    0%{
+      left: 0;
+    }
+
   }
   
   @-moz-keyframes moving-images {
-    100% {
-      transform: rotate(-360deg);
+    0%{
+      left: 0;
+    }
+    50% {
+      left: -9999px;
+    }
+    0%{
+      left: 0;
     }
   }
   
   @-webkit-keyframes moving-images {
-    100% {
-      transform: rotate(-360deg);
+    0%{
+      left: 0;
+    }
+    50% {
+      left: -9999px;
+    }
+    0%{
+      left: 0;
     }
   }
   
   @-o-keyframes moving-images {
-    100% {
-      transform: rotate(-360deg);
+    0%{
+      left: 0;
+    }
+    50% {
+      left: -9999px;
+    }
+    0%{
+      left: 0;
     }
   }
