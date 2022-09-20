@@ -10,13 +10,8 @@ import { AiFillQuestionCircle } from 'react-icons/ai';
 
 function Home() {
 
-<<<<<<< HEAD
-    const [state,setState] = useState({
-        tutIsVisible : false
-=======
     const [state, setState] = useState({
         tutIsVisible: false
->>>>>>> 6c8601893515f4a0ae427f15d15d13e5859df85c
     })
 
     function closeWindowTutorial() {
