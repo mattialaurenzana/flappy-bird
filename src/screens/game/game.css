@@ -33,7 +33,7 @@
 }
 
 .jump {
-    animation: jumpShuttle 1s linear;
+    animation: jumpShuttle 4s linear;
 }
 
 .jump-shuttle {
@@ -45,11 +45,11 @@
         transform: 0;
     }
 
-    50%{
+    10%{
         transform: translateY(-100px)
     }
 
     100% {
-        transform: 0;
+        transform: translateY(+900px);
     }
 }
