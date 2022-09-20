@@ -1,6 +1,6 @@
-import "./BgContainer.css";
-import "../tutorial/Tutorial";
-import { SpriteAnimator } from "react-sprite-animator";
+import './BgContainer.css'
+import '../tutorial/Tutorial';
+import { SpriteAnimator } from 'react-sprite-animator';
 
 function BgContainer() {
   return (
