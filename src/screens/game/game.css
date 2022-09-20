@@ -5,7 +5,7 @@
     top: 0;
 }
 
-.score-text{
+.score-text {
     color: white;
     margin-top: 30px;
     font-size: 35px;
@@ -27,7 +27,29 @@
 }
 
 .shuttle {
-    width: calc(698px * var(--pixel-size-game));
     position: absolute;
     left: 0;
+    width: calc(698px * var(--pixel-size-game));
+}
+
+.jump {
+    animation: jumpShuttle 1s linear;
+}
+
+.jump-shuttle {
+    left: calc(-600px * var(--pixel-size-game));
+}
+
+@keyframes jumpShuttle {
+    0% {
+        transform: 0;
+    }
+
+    50%{
+        transform: translateY(-100px)
+    }
+
+    100% {
+        transform: 0;
+    }
 }
