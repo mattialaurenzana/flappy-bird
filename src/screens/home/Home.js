@@ -6,10 +6,13 @@ import './Home.css'
 import Button from '../../components/ui/button/Button';
 import InputBox from '../../components/ui/inputbox/InputBox';
 import { AiFillQuestionCircle } from 'react-icons/ai';
+import { useNavigate } from 'react-router-dom';
+import SCREENS from '../../routes/screenName';
 
 
 function Home() {
 
+    const navigate = useNavigate()
     const [state, setState] = useState({
         tutIsVisible: false
     })
@@ -28,9 +31,12 @@ function Home() {
         })
     }
 
+    function handleStart(){
+        navigate(SCREENS.game)
+    }
+
     return (
         <>
-            <BgContainer />
             {state.tutIsVisible && <Tutorial
                 callback={closeWindowTutorial}
             />}
@@ -44,6 +50,7 @@ function Home() {
                 />
                 <Button
                     label={'Start'}
+                    callback={handleStart}
                 />
                 <Button
                     label={'Classifica'}
