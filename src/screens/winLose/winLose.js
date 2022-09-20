@@ -1,10 +1,10 @@
-import BgContainer from "../../components/ui/bgcontainer/BgContainer"
+import './winlose.css';
 
 function winLose(){
     return(
 
         <>
-        <BgContainer />
+ 
         
             <div className="winLose-container">
                 
@@ -19,4 +19,4 @@ function winLose(){
     )
 }
 
-export default BgContainer;
+export default winLose;
