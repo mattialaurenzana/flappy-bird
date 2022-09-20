@@ -6,9 +6,13 @@ import './Home.css'
 import Button from '../../components/ui/button/Button';
 import InputBox from '../../components/ui/inputbox/InputBox';
 import { AiFillQuestionCircle } from 'react-icons/ai';
+import {Link,useNavigate,useNavigation,useParams} from 'react-router-dom';
+import SCREENS from '../../routes/screenName';
 
 
 function Home() {
+
+    const navigate = useNavigate();
 
     const [state, setState] = useState({
         tutIsVisible: false
@@ -26,6 +30,11 @@ function Home() {
             ...state,
             tutIsVisible: true
         })
+    }
+
+    function goToWinLose(){
+        navigate(SCREENS.winLose);
+        
     }
 
     return (
@@ -47,6 +56,7 @@ function Home() {
                 />
                 <Button
                     label={'Classifica'}
+                    callback={goToWinLose}
                 />
             </div>
             <AiFillQuestionCircle className='tutorial-icon' onClick={openWindowTutorial} />
