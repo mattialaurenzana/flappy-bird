@@ -27,12 +27,10 @@
 
 /* Home shuttle animation */
 :root {
-    --pixel-size: 2;
+    --pixel-size: 1.5;
 }
 
 .img-container {
-    /* height: 100px;
-    width: 100px; */
     height: calc(100px * var(--pixel-size));
     width: calc(100px * var(--pixel-size));
     overflow: hidden;

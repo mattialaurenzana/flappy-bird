@@ -34,12 +34,14 @@ function Home() {
 
     function goToWinLose(){
         navigate(SCREENS.winLose);
+    }
         
+    function handleStart(){
+        navigate(SCREENS.game)
     }
 
     return (
         <>
-            <BgContainer />
             {state.tutIsVisible && <Tutorial
                 callback={closeWindowTutorial}
             />}
@@ -53,6 +55,7 @@ function Home() {
                 />
                 <Button
                     label={'Start'}
+                    callback={handleStart}
                 />
                 <Button
                     label={'Classifica'}

@@ -24,6 +24,8 @@
 
 .content-block{
   position: absolute;
+  width: 100%;
+  height: 300px;
   bottom: 0;
   width: 100%;
   height: 300px;
@@ -110,39 +112,15 @@
     left: 0;
   }
 
-  50% {
-    left: -9999px;
-  }
-
-  100% {
-    left: 0;
-  }
 }
 
-@-webkit-keyframes moving-images {
+
+@keyframes moving-images {
   0% {
     left: 0;
   }
 
-  50% {
-    left: -9999px;
-  }
-
   100% {
-    left: 0;
-  }
-}
-
-@-o-keyframes moving-images {
-  0% {
-    left: 0;
-  }
-
-  50% {
-    left: -9999px;
-  }
-
-  100% {
-    left: 0;
+    left: -999px;
   }
 }
