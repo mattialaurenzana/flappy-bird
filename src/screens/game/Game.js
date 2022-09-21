@@ -1,27 +1,13 @@
 import { useEffect, useState } from "react";
+import Score from "../../components/ui/score/Score";
 import './game.css'
 
 function Game() {
     const [state, setState] = useState({
         username: '',
-        score: 0,
         shuttleClass: '',
         shuttleContainerClass:''
     })
-    let actualScore = 0
-
-
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            actualScore = actualScore + 1
-            setState({
-                ...state,
-                score: actualScore
-            })
-        }, 1000);
-        return () => clearInterval(interval);
-    }, []);
 
     function jumpShuttle(){
         setState({
@@ -35,7 +21,7 @@ function Game() {
     return (
         <>
             <div className="game-container" onClick={jumpShuttle}>
-                <div className="score-text">Score: {state.score}</div>
+                <Score/>
                 <div className={`shuttle-container ${state.shuttleContainerClass}`}>
                     <img className={`shuttle pixelart ${state.shuttleClass}`} src={require('../../assets/image/sprite-sheet.png')}></img>
                 </div>
