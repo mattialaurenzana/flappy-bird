@@ -8,8 +8,8 @@ function Game() {
 
     const GAME_HEIGHT = 500;
     const GAME_WIDTH = 350;
-    const SHUTTLE_SIZE = 80;
-    const JUMP_HEIGHT = 100;
+    const SHUTTLE_SIZE = 58;
+    const JUMP_HEIGHT = 80;
     const GRAVITY = 6;
     const PILLAR_WIDTH = 40;
     const PILLAR_GAP = 150;
@@ -19,7 +19,7 @@ function Game() {
     const [pillarHeight, setPillarHeight] = useState(200);
     const [pillarLeft, setPillarLeft] = useState(GAME_WIDTH - PILLAR_WIDTH);
     const [gameHasStarted, setGameHasStarted] = useState(false);
-    const bottomPillarHeight = GAME_HEIGHT - PILLAR_GAP - pillarHeight
+    const bottomPillarHeight = GAME_HEIGHT - PILLAR_GAP - pillarHeight;
 
     const [state, setState] = useState({
         username: '',
@@ -55,8 +55,26 @@ function Game() {
             return () => {
                 clearInterval(pillarId);
             }
+        }else{
+           changePillarHeight();
         }
-    })
+    },[gameHasStarted,pillarLeft])
+
+    useEffect(() => {
+        const topCollision = state.shuttlePosition >= 0 && state.shuttlePosition < pillarHeight;
+        const bottomCollision = state.shuttlePosition <= 500 && state.shuttlePosition >= 500 - bottomPillarHeight;
+
+        if(pillarLeft >= 0 && pillarLeft <= PILLAR_WIDTH && (topCollision || bottomCollision)){
+            setGameHasStarted(false);
+        }
+
+    },[state.shuttlePosition,pillarHeight,bottomPillarHeight,pillarLeft]);
+
+    const changePillarHeight = ()=>{
+
+        setPillarLeft(GAME_WIDTH - PILLAR_WIDTH);
+        setPillarHeight(Math.floor(Math.random() * (GAME_HEIGHT - PILLAR_GAP)));
+    }
 
     const handleClick = () => {
         let newShuttlePosition = state.shuttlePosition - JUMP_HEIGHT;
@@ -88,7 +106,9 @@ function Game() {
     return (
         <>
             <div className="game-container" onClick={handleClick}>
-                <Score />
+                <Score 
+                    gameHasStarted = {gameHasStarted}
+                />
 
                 <div className="game-box">
                     <Pillar

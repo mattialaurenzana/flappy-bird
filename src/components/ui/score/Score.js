@@ -1,26 +1,27 @@
 import { useState, useEffect } from 'react';
 import './score.css'
 
-function Score() {
-    const [state, setState] = useState({
-        score:0
-    })
-    let actualScore = 0
+function Score(props) {
+ 
+    const [score,setScore] = useState(0);
+    
+
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            actualScore = actualScore + 1
-            setState({
-                ...state,
-                score: actualScore
-            })
-        }, 1000);
+        let interval ;
+        if(props.gameHasStarted){
+            interval = setInterval(() => {
+            
+               setScore(score + 1);
+            }, 1000);
+        }
+ 
         return () => clearInterval(interval);
-    }, []);
+    });
 
 
     return (
-        <div className="score-text">Score: {state.score}</div>
+        <div className="score-text">Score: {score}</div>
     );
 }
 
