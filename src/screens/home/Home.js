@@ -48,6 +48,15 @@ function Home() {
      inputString = e.target.value;
   }
 
+  function handleFocus(){
+    if(state.emptyInput){
+      setState({
+        ...state,
+        emptyInput : false
+      })
+    }
+  }
+
   function handleStart() {
 
     if(inputString.length === 0){
@@ -62,7 +71,7 @@ function Home() {
       currentUser.username = inputString;
       localStorageRanking.push(currentUser);
       localStorage.setItem('ranking',JSON.stringify(localStorageRanking));
-      // navigate(SCREENS.game);
+      navigate(SCREENS.game);
     }
     
   }
@@ -84,6 +93,7 @@ function Home() {
           <InputBox 
               placeholder={"Inserire username..."} 
               callbackChange = {handleInput}
+              callbackFocus = {handleFocus}
             />
             {
               state.emptyInput &&
