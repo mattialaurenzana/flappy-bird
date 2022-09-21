@@ -3,40 +3,28 @@
     height: 100vh;
     width: 100vw;
     top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 
 
 /* Home shuttle animation */
-:root {
-    --pixel-size-game: 0.7;
+
+
+
+
+
+.game-box{
+    position: relative;
+    height: 500px;
+    width: 350px;
+    background-color: white;
 }
 
-.shuttle-container {
-    height: calc(100px * var(--pixel-size-game));
-    width: calc(100px * var(--pixel-size-game));
-    overflow: hidden;
-    position: absolute;
-    top: 50%;
-    left: 20px;
-    transform: translateY(-50%);
-}
 
-.shuttle {
-    position: absolute;
-    left: 0;
-    width: calc(698px * var(--pixel-size-game));
-}
-
-.jump {
-    animation: jumpShuttle 4s linear;
-}
-
-.jump-shuttle {
-    left: calc(-600px * var(--pixel-size-game));
-}
-
-@keyframes jumpShuttle {
+/* @keyframes jumpShuttle {
     0% {
         transform: 0;
     }
@@ -48,4 +36,4 @@
     100% {
         transform: translateY(+900px);
     }
-}
+} */

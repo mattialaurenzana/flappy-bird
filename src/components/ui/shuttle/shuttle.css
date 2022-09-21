@@ -1,0 +1,27 @@
+.shuttle-container {
+    height: calc(100px * var(--pixel-size-game));
+    width: calc(100px * var(--pixel-size-game));
+    overflow: hidden;
+    position: absolute;
+    top: 300px;
+    left: 20px;
+    
+}
+
+.shuttle {
+    position: absolute;
+    left: 0;
+    width: calc(698px * var(--pixel-size-game));
+}
+
+.jump {
+    animation: jumpShuttle 4s linear;
+}
+
+.jump-shuttle {
+    left: calc(-600px * var(--pixel-size-game));
+}
+
+:root {
+    --pixel-size-game: 0.8;
+}
