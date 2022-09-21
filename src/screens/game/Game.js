@@ -6,12 +6,12 @@ import './game.css'
 
 function Game() {
 
-    const GAME_HEIGHT = 500;
-    const GAME_WIDTH = 350;
+    const GAME_HEIGHT = 550;
+    const GAME_WIDTH = 375;
     const SHUTTLE_SIZE = 58;
-    const JUMP_HEIGHT = 60;
+    const JUMP_HEIGHT = 80;
     const GRAVITY = 5;
-    const PILLAR_WIDTH = 40;
+    const PILLAR_WIDTH = 80;
     const PILLAR_GAP = 150;
 
 
@@ -24,17 +24,18 @@ function Game() {
     const [state, setState] = useState({
         username: '',
         shuttlePosition: 250,
-        // shuttleClass: '',
-        // shuttleContainerClass:''
+        shuttleClass: '',
     })
 
+    // add gravity
     useEffect(() => {
         let shuttleId;
         if (gameHasStarted && state.shuttlePosition < GAME_HEIGHT - SHUTTLE_SIZE) {
             shuttleId = setInterval(() => {
                 setState({
                     ...state,
-                    shuttlePosition: state.shuttlePosition + GRAVITY
+                    shuttlePosition: state.shuttlePosition + GRAVITY,
+                    shuttleClass: 'shuttledown'
                 })
 
             }, 24)
@@ -44,70 +45,68 @@ function Game() {
         }
     }, [state.shuttlePosition, gameHasStarted])
 
-
+    // add pillar
     useEffect(() => {
         let pillarId;
         if (gameHasStarted && pillarLeft >= -PILLAR_WIDTH) {
             pillarId = setInterval(() => {
-                setPillarLeft(pillarLeft - 5)
+                setPillarLeft(pillarLeft - 3)
             }, 24);
 
             return () => {
                 clearInterval(pillarId);
             }
-        }else{
-           changePillarHeight();
+        } else {
+            changePillarHeight();
         }
-    },[gameHasStarted,pillarLeft])
+    }, [gameHasStarted, pillarLeft])
 
+    // check collisions
     useEffect(() => {
         const topCollision = state.shuttlePosition >= 0 && state.shuttlePosition < pillarHeight;
-        const bottomCollision = state.shuttlePosition <= 500 && state.shuttlePosition >= 500 - bottomPillarHeight;
+        const bottomCollision = state.shuttlePosition <= 550 && state.shuttlePosition >= 550 - bottomPillarHeight;
+        const groundCollision = state.shuttlePosition === 495
 
-        if(pillarLeft >= 0 && pillarLeft <= PILLAR_WIDTH && (topCollision || bottomCollision)){
+        if ((groundCollision) || (pillarLeft >= 0 && pillarLeft <= PILLAR_WIDTH && (topCollision || bottomCollision))) {
             setGameHasStarted(false);
+            setState({
+                ...state,
+                shuttlePosition: 250,
+                shuttleClass: ''
+            })
         }
 
-    },[state.shuttlePosition,pillarHeight,bottomPillarHeight,pillarLeft]);
+    }, [state.shuttlePosition, pillarHeight, bottomPillarHeight, pillarLeft]);
 
-    const changePillarHeight = ()=>{
-
+    const changePillarHeight = () => {
         setPillarLeft(GAME_WIDTH - PILLAR_WIDTH);
         setPillarHeight(Math.floor(Math.random() * (GAME_HEIGHT - PILLAR_GAP)));
     }
 
+    // jump shuttle
     const handleClick = () => {
         let newShuttlePosition = state.shuttlePosition - JUMP_HEIGHT;
-
+        let shuttleclass = 'shuttleup'
         if (!gameHasStarted) {
             setGameHasStarted(true)
+            shuttleclass = 'shuttledown'
         } else if (newShuttlePosition < 0) {
-            setState({
-                ...state,
-                shuttlePosition: 0
-            })
-        } else {
-            setState({
-                ...state,
-                shuttlePosition: newShuttlePosition
-            })
+            shuttleclass = 'shuttleup'
+            newShuttlePosition = 0
         }
+        setState({
+            ...state,
+            shuttlePosition: newShuttlePosition,
+            shuttleClass: shuttleclass
+        })
     }
-
-    // function jumpShuttle(){
-    //     setState({
-    //         ...state,
-    //         // shuttleContainerClass: 'jump',
-    //         // shuttleClass: 'jump-shuttle'
-    //     })
-    // }
 
 
     return (
         <>
             <div className="game-container" onClick={handleClick}>
-                <Score 
-                    gameHasStarted = {gameHasStarted}
+                <Score
+                    gameHasStarted={gameHasStarted}
                 />
 
                 <div className="game-box">
@@ -127,7 +126,7 @@ function Game() {
                     />
                     <Shuttle
                         top={state.shuttlePosition}
-
+                        class={state.shuttleClass}
                     />
                 </div>
 

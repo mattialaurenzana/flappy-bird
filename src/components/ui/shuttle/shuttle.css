@@ -15,12 +15,14 @@
     width: calc(698px * var(--pixel-size-game));
 }
 
-.jump {
-    animation: jumpShuttle 4s linear;
+.shuttleup {
+    left: calc(-200px * var(--pixel-size-game));
+    top: calc(-96px * var(--pixel-size-game));
 }
 
-.jump-shuttle {
-    left: calc(-600px * var(--pixel-size-game));
+.shuttledown {
+    left: calc(-500px * var(--pixel-size-game));
+    top: calc(-96px * var(--pixel-size-game));
 }
 
 :root {

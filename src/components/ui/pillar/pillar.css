@@ -1,4 +1,14 @@
 .pillar-container{
-    background-color: red;
     position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.pillartop{
+    background: url('../../../assets/image/pillartop.png');
+    background-position: bottom;
+}
+
+.pillarbottom{
+    background: url('../../../assets/image/pillarbottom.png');
 }
