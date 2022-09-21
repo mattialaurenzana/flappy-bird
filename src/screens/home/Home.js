@@ -62,7 +62,7 @@ function Home() {
       currentUser.username = inputString;
       localStorageRanking.push(currentUser);
       localStorage.setItem('ranking',JSON.stringify(localStorageRanking));
-      // navigate(SCREENS.game);
+      navigate(SCREENS.game);
     }
     
   }
