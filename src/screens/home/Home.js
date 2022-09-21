@@ -15,16 +15,15 @@ function Home() {
   let inputString = "";
 
   let localStorageRanking = [];
-  const currentUser = {};
 
   const [state, setState] = useState({
     tutIsVisible: false,
     emptyInput : false
   });
 
-  useEffect(() => {
-    localStorageRanking = localStorage.getItem('ranking')
-  },[])
+  // useEffect(() => {
+  //   localStorageRanking = JSON.parse(localStorage.getItem('ranking'));
+  // },[])
 
   function closeWindowTutorial() {
     setState({
@@ -41,7 +40,7 @@ function Home() {
   }
 
   function goToWinLose() {
-    navigate(SCREENS.winLose);
+    navigate(SCREENS.ranking);
   }
 
   function handleInput(e){
@@ -58,9 +57,12 @@ function Home() {
       })
     }else{
 
-      
-      user.username = inputString;
-      navigate(SCREENS.game);
+      //creazione dellnuovo oggetto user e aggiunta al local storage
+      const currentUser =  {};
+      currentUser.username = inputString;
+      localStorageRanking.push(currentUser);
+      localStorage.setItem('ranking',JSON.stringify(localStorageRanking));
+      // navigate(SCREENS.game);
     }
     
   }
