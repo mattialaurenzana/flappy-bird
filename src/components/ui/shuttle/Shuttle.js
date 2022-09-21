@@ -5,7 +5,7 @@ function Shuttle(props) {
     <>
       <div className={`shuttle-container`} style={{top:`${props.top}px`}}>
         <img
-          className={`shuttle pixelart`}
+          className={`shuttle pixelart ${props.class}`}
           src={require("../../../assets/image/sprite-sheet.png")}
         ></img>
       </div>

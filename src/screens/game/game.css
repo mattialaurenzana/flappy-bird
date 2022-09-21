@@ -13,15 +13,12 @@
 /* Home shuttle animation */
 
 
-
-
-
-.game-box{
+.game-box {
     position: relative;
-    height: 500px;
-    width: 350px;
-    background-color: white;
+    height: 550px;
+    width: 375px;
     overflow: hidden;
+    /* background-color: aliceblue; */
 }
 
 
