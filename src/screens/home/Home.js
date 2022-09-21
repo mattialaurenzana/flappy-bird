@@ -59,7 +59,7 @@ function Home() {
     }else{
 
       
-      user.username = inputString;
+      // user.username = inputString;
       navigate(SCREENS.game);
     }
     

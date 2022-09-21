@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Score from "../../components/ui/score/Score";
 import Shuttle from "../../components/ui/shuttle/Shuttle";
 import Pillar from "../../components/ui/pillar/Pillar";
@@ -9,23 +9,44 @@ function Game() {
     const GAME_HEIGHT = 550;
     const GAME_WIDTH = 375;
     const SHUTTLE_SIZE = 58;
-    const JUMP_HEIGHT = 80;
+    const JUMP_HEIGHT = 100;
     const GRAVITY = 5;
     const PILLAR_WIDTH = 80;
-    const PILLAR_GAP = 150;
+    const arrayLevel = [
+        {
+            pillarGap: 200,
+            pillarSpeed: 4
+        },
+        {
+            pillarGap: 180,
+            pillarSpeed: 5
+        },
+        {
+            pillarGap: 150,
+            pillarSpeed: 6
+        },
+        {
+            pillarGap: 140,
+            pillarSpeed: 7
+        }
 
-
-
+    ]
     const [pillarHeight, setPillarHeight] = useState(200);
-    const [pillarLeft, setPillarLeft] = useState(GAME_WIDTH - PILLAR_WIDTH);
+    const [pillarLeft, setPillarLeft] = useState(GAME_WIDTH);
     const [gameHasStarted, setGameHasStarted] = useState(false);
-    const bottomPillarHeight = GAME_HEIGHT - PILLAR_GAP - pillarHeight;
+    const [pillarGap, setPillarGap] = useState(arrayLevel[0].pillarGap);
+    const [pillarSpeed, setPillarSpeed] = useState(arrayLevel[0].pillarSpeed);
+
+
 
     const [state, setState] = useState({
         username: '',
         shuttlePosition: 250,
         shuttleClass: '',
+        falling: false,
+        score: 0
     })
+    const bottomPillarHeight = GAME_HEIGHT - pillarGap - pillarHeight;
 
     // add gravity
     useEffect(() => {
@@ -35,7 +56,8 @@ function Game() {
                 setState({
                     ...state,
                     shuttlePosition: state.shuttlePosition + GRAVITY,
-                    shuttleClass: 'shuttledown'
+                    falling: true
+                    // shuttleClass: 'shuttledown'
                 })
 
             }, 24)
@@ -43,14 +65,29 @@ function Game() {
         return () => {
             clearInterval(shuttleId);
         }
+
     }, [state.shuttlePosition, gameHasStarted])
+
+    // useEffect(() => {
+    //     let timer
+    //     if (state.falling) {
+    //         timer = setTimeout(() => {
+    //             console.log('down');
+    //             setState({
+    //                 ...state,
+    //                 shuttleClass: 'shuttledown'
+    //             })
+    //         }, 1000);
+    //     }
+    //     return () => clearTimeout(timer);
+    // }, [state.falling]);
 
     // add pillar
     useEffect(() => {
         let pillarId;
         if (gameHasStarted && pillarLeft >= -PILLAR_WIDTH) {
             pillarId = setInterval(() => {
-                setPillarLeft(pillarLeft - 3)
+                setPillarLeft(pillarLeft - pillarSpeed)
             }, 24);
 
             return () => {
@@ -72,15 +109,16 @@ function Game() {
             setState({
                 ...state,
                 shuttlePosition: 250,
-                shuttleClass: ''
+                shuttleClass: '',
+                falling: false,
             })
         }
 
     }, [state.shuttlePosition, pillarHeight, bottomPillarHeight, pillarLeft]);
 
     const changePillarHeight = () => {
-        setPillarLeft(GAME_WIDTH - PILLAR_WIDTH);
-        setPillarHeight(Math.floor(Math.random() * (GAME_HEIGHT - PILLAR_GAP)));
+        setPillarLeft(GAME_WIDTH);
+        setPillarHeight(Math.floor(Math.random() * (GAME_HEIGHT - pillarGap)));
     }
 
     // jump shuttle
@@ -101,12 +139,29 @@ function Game() {
         })
     }
 
+    function updateScore(e) {
+        setState({
+            ...state,
+            score: e.score
+        })
+        changeDifficulty(e.level)
+    }
+
+
+
+    function changeDifficulty(level) {
+        console.log('level', level);
+        setPillarGap(arrayLevel[level].pillarGap)
+        setPillarSpeed(arrayLevel[level].pillarSpeed)
+    }
+
 
     return (
         <>
             <div className="game-container" onClick={handleClick}>
                 <Score
                     gameHasStarted={gameHasStarted}
+                    callback={updateScore}
                 />
 
                 <div className="game-box">
