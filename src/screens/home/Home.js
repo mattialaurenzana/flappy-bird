@@ -14,10 +14,17 @@ function Home() {
   const navigate = useNavigate();
   let inputString = "";
 
+  let localStorageRanking = [];
+  const currentUser = {};
+
   const [state, setState] = useState({
     tutIsVisible: false,
     emptyInput : false
   });
+
+  useEffect(() => {
+    localStorageRanking = localStorage.getItem('ranking')
+  },[])
 
   function closeWindowTutorial() {
     setState({
@@ -38,7 +45,8 @@ function Home() {
   }
 
   function handleInput(e){
-     inputString = e.value.target;
+
+     inputString = e.target.value;
   }
 
   function handleStart() {
@@ -49,6 +57,9 @@ function Home() {
         emptyInput : true
       })
     }else{
+
+      
+      user.username = inputString;
       navigate(SCREENS.game);
     }
     
@@ -76,12 +87,12 @@ function Home() {
               state.emptyInput &&
               <div className="error-banner">
                 <BiErrorAlt />
-                <div className="error-text">Inserire uno username valido</div>
+                <div className="error-text">Inserire almeno un carattere</div>
               </div>
             }
          </div>
 
-          <Button label={"Start"} callback={handleStart} />
+          <Button label={"Gioca"} callback={handleStart} />
           <Button label={"Classifica"} callback={goToWinLose} />
         </div>
       }
