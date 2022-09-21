@@ -52,7 +52,17 @@
     image-rendering: pixelated;
 }
 
+.input-banner{
+    display: flex;
+    flex-direction: column;
+}
 
+.error-banner{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: red;
+}
 @keyframes moveSpriteSheet {
     from {
         transform: translate3d(0px, 0, 0)
