@@ -1,25 +1,25 @@
 import './pillar.css';
 
-function Pillar(props){
+function Pillar(props) {
 
     const MY_STYLE = {
-        top : `${props.top}px`,
-        width : `${props.width}px`,
-        height : `${props.height}px`,
-        left : `${props.left}px`,
+        top: `${props.top}px`,
+        width: `${props.width}px`,
+        height: `${props.height}px`,
+        left: `${props.left}px`,
 
     }
-    return(
+    return (
         <>
-        
+
             <div className='pillar-container'
-                style = {
+                style={
                     MY_STYLE
                 }
             >
 
             </div>
-        
+
         </>
     )
 }

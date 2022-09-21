@@ -6,7 +6,6 @@ import './game.css'
 
 function Game() {
 
-
     const GAME_HEIGHT = 500;
     const GAME_WIDTH = 350;
     const SHUTTLE_SIZE = 80;
@@ -16,70 +15,63 @@ function Game() {
     const PILLAR_GAP = 150;
 
 
-    const [pillarHeight,setPillarHeight] = useState(200);
 
+    const [pillarHeight, setPillarHeight] = useState(200);
+    const [pillarLeft, setPillarLeft] = useState(GAME_WIDTH - PILLAR_WIDTH);
+    const [gameHasStarted, setGameHasStarted] = useState(false);
+    const bottomPillarHeight = GAME_HEIGHT - PILLAR_GAP - pillarHeight
 
     const [state, setState] = useState({
         username: '',
-        shuttlePosition : 250,
-        gameHasStarted : false,
-        pillarLeft : GAME_WIDTH - PILLAR_WIDTH,
-        bottomPillarHeight : GAME_HEIGHT - PILLAR_GAP - pillarHeight,
+        shuttlePosition: 250,
         // shuttleClass: '',
         // shuttleContainerClass:''
     })
 
-    useEffect(()=>{
+    useEffect(() => {
         let shuttleId;
-        if(state.gameHasStarted && state.shuttlePosition < GAME_HEIGHT - SHUTTLE_SIZE){
-            shuttleId = setInterval(()=>{
+        if (gameHasStarted && state.shuttlePosition < GAME_HEIGHT - SHUTTLE_SIZE) {
+            shuttleId = setInterval(() => {
                 setState({
                     ...state,
-                    shuttlePosition : state.shuttlePosition + GRAVITY
+                    shuttlePosition: state.shuttlePosition + GRAVITY
                 })
 
-            },24)
+            }, 24)
         }
-        return()=>{
+        return () => {
             clearInterval(shuttleId);
         }
-    },[state.shuttlePosition,state.gameHasStarted])
+    }, [state.shuttlePosition, gameHasStarted])
 
 
-    useEffect(()=>{
+    useEffect(() => {
         let pillarId;
-        if(state.gameHasStarted && state.pillarLeft >= -PILLAR_WIDTH){
-            pillarId = setInterval(()=>{
-                setState({
-                    ...state,
-                    pillarLeft : state.pillarLeft - 5,
-                })
+        if (gameHasStarted && pillarLeft >= -PILLAR_WIDTH) {
+            pillarId = setInterval(() => {
+                setPillarLeft(pillarLeft - 5)
+            }, 24);
 
-            },24)
-
-            return ()=>{
+            return () => {
                 clearInterval(pillarId);
             }
         }
     })
 
-    const handleClick = () =>{
+    const handleClick = () => {
         let newShuttlePosition = state.shuttlePosition - JUMP_HEIGHT;
 
-        if(!state.gameHasStarted){
-           setState({
-            ...state,
-            gameHasStarted : true
-           })
-        }else if(newShuttlePosition < 0){
+        if (!gameHasStarted) {
+            setGameHasStarted(true)
+        } else if (newShuttlePosition < 0) {
             setState({
                 ...state,
-                shuttlePosition : 0
+                shuttlePosition: 0
             })
-        }else{
+        } else {
             setState({
                 ...state,
-                shuttlePosition : newShuttlePosition
+                shuttlePosition: newShuttlePosition
             })
         }
     }
@@ -96,29 +88,29 @@ function Game() {
     return (
         <>
             <div className="game-container" onClick={handleClick}>
-                <Score/>
+                <Score />
 
                 <div className="game-box">
-                    <Pillar 
+                    <Pillar
                         top={0}
                         width={PILLAR_WIDTH}
                         height={pillarHeight}
-                        left={state.pillarLeft}
-                    
+                        left={pillarLeft}
+
                     />
-                    <Pillar 
-                        top={GAME_HEIGHT - (pillarHeight + state.bottomPillarHeight)}
+                    <Pillar
+                        top={GAME_HEIGHT - (pillarHeight + bottomPillarHeight)}
                         width={PILLAR_WIDTH}
-                        height={state.bottomPillarHeight}
-                        left={state.pillarLeft}
-                    
+                        height={bottomPillarHeight}
+                        left={pillarLeft}
+
                     />
-                    <Shuttle 
+                    <Shuttle
                         top={state.shuttlePosition}
-                    
+
                     />
                 </div>
-               
+
 
             </div>
         </>
