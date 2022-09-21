@@ -6,14 +6,17 @@ import "./Home.css";
 import Button from "../../components/ui/button/Button";
 import InputBox from "../../components/ui/inputbox/InputBox";
 import { AiFillQuestionCircle } from "react-icons/ai";
+import {BiErrorAlt} from "react-icons/bi"
 import { Link, useNavigate, useNavigation, useParams } from "react-router-dom";
 import SCREENS from "../../routes/screenName";
 
 function Home() {
   const navigate = useNavigate();
+  let inputString = "";
 
   const [state, setState] = useState({
     tutIsVisible: false,
+    emptyInput : false
   });
 
   function closeWindowTutorial() {
@@ -34,8 +37,21 @@ function Home() {
     navigate(SCREENS.winLose);
   }
 
+  function handleInput(e){
+     inputString = e.value.target;
+  }
+
   function handleStart() {
-    navigate(SCREENS.game);
+
+    if(inputString.length === 0){
+      setState({
+        ...state,
+        emptyInput : true
+      })
+    }else{
+      navigate(SCREENS.game);
+    }
+    
   }
 
   return (
@@ -51,7 +67,20 @@ function Home() {
               src={require("../../assets/image/sprite-sheet.png")}
             />
           </div>
-          <InputBox placeholder={"Inserire username..."} />
+         <div className="input-banner">
+          <InputBox 
+              placeholder={"Inserire username..."} 
+              callbackChange = {handleInput}
+            />
+            {
+              state.emptyInput &&
+              <div className="error-banner">
+                <BiErrorAlt />
+                <div className="error-text">Inserire uno username valido</div>
+              </div>
+            }
+         </div>
+
           <Button label={"Start"} callback={handleStart} />
           <Button label={"Classifica"} callback={goToWinLose} />
         </div>

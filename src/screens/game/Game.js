@@ -9,8 +9,8 @@ function Game() {
     const GAME_HEIGHT = 500;
     const GAME_WIDTH = 350;
     const SHUTTLE_SIZE = 58;
-    const JUMP_HEIGHT = 80;
-    const GRAVITY = 6;
+    const JUMP_HEIGHT = 60;
+    const GRAVITY = 5;
     const PILLAR_WIDTH = 40;
     const PILLAR_GAP = 150;
 
