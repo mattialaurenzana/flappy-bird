@@ -5,6 +5,7 @@ import Pillar from "../../components/ui/pillar/Pillar";
 import './game.css'
 import { useLocation } from "react-router-dom";
 import GameOver from "../../components/ui/gameover/GameOver";
+import BgContainer from "../../components/ui/bgcontainer/BgContainer";
 
 function Game() {
 
