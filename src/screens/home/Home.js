@@ -37,7 +37,7 @@ function Home() {
     });
   }
 
-  function goToWinLose() {
+  function goToRanking() {
     navigate(SCREENS.ranking);
   }
 
@@ -85,7 +85,7 @@ function Home() {
 
       {!state.tutIsVisible &&
         <div className="home-container">
-          <h1 className="title">Flappy Ufo</h1>
+          <h1 className="title">Flying shuttle</h1>
           <div className="img-container">
             <img
               className="spaceshuttle-spritesheet pixelart"
@@ -108,7 +108,7 @@ function Home() {
           </div>
 
           <Button label={"Gioca"} callback={handleStart} />
-          <Button label={"Classifica"} callback={goToWinLose} />
+          <Button label={"Classifica"} callback={goToRanking} />
         </div>
       }
 

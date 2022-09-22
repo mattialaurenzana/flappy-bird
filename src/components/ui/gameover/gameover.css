@@ -1,7 +1,7 @@
 .gameover-container{
     margin: 0 auto;
     width: 60vw;
-    height: 30vh;
+    height: 40vh;
     background-color: white;
     border: 2px solid black;
     border-radius: 20px;
@@ -11,6 +11,10 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .button{
@@ -21,4 +25,10 @@
     color: white;
     padding: 5px;
     border-radius: 40px;
+    margin: 10px
+}
+
+.title-gameover{
+    font-size: 30px;
+    color: black;
 }

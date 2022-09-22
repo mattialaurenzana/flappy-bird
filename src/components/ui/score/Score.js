@@ -40,8 +40,6 @@ function Score(props) {
 
        
 
-      
-
         return () => clearInterval(interval);
 
 

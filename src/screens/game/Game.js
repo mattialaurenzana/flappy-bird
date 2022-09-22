@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import Score from "../../components/ui/score/Score";
 import Shuttle from "../../components/ui/shuttle/Shuttle";
 import Pillar from "../../components/ui/pillar/Pillar";
-import BgContainer from "../../components/ui/bgcontainer/BgContainer";
 import './game.css'
 import { useLocation } from "react-router-dom";
 import GameOver from "../../components/ui/gameover/GameOver";
@@ -124,7 +123,7 @@ function Game() {
             setGameHasStarted(false);
             setState({
                 ...state,
-                gameover:true
+                gameover: true
             })
 
            
@@ -144,20 +143,23 @@ function Game() {
 
     // jump shuttle
     const handleClick = () => {
-        let newShuttlePosition = state.shuttlePosition - JUMP_HEIGHT;
-        let shuttleclass = 'shuttleup'
-        if (!gameHasStarted) {
-            setGameHasStarted(true)
-            shuttleclass = 'shuttledown'
-        } else if (newShuttlePosition < 0) {
-            shuttleclass = 'shuttleup'
-            newShuttlePosition = 0
+        if (!state.gameover) {
+            let newShuttlePosition = state.shuttlePosition - JUMP_HEIGHT;
+            let shuttleclass = 'shuttleup'
+            if (!gameHasStarted) {
+                setGameHasStarted(true)
+                shuttleclass = 'shuttledown'
+            } else if (newShuttlePosition < 0) {
+                shuttleclass = 'shuttleup'
+                newShuttlePosition = 0
+            }
+            setState({
+                ...state,
+                shuttlePosition: newShuttlePosition,
+                shuttleClass: shuttleclass
+            })
         }
-        setState({
-            ...state,
-            shuttlePosition: newShuttlePosition,
-            shuttleClass: shuttleclass
-        })
+
     }
 
   
@@ -165,6 +167,29 @@ function Game() {
 
 
     
+    // function updateScore(e) {
+    //     console.log(e);
+    //     setState({
+    //         ...state,
+    //         score: e.score
+    //     })
+
+    //     changeDifficulty(e.level)
+    // }
+
+
+    function changeDifficulty(level) {
+        setPillarGap(arrayLevel[level].pillarGap)
+        setPillarSpeed(arrayLevel[level].pillarSpeed)
+    }
+
+    function hideGameOver() {
+        setState({
+            ...state,
+            gameover: false,
+            shuttlePosition: 250
+        })
+    }
 
 
     return (
@@ -199,8 +224,10 @@ function Game() {
                         class={state.shuttleClass}
                     />
                 </div>
-                { state.gameover && <GameOver 
-                />}
+                {state.gameover &&
+                    <GameOver
+                        callback={hideGameOver}
+                    />}
 
             </div>
         </>

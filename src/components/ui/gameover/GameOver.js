@@ -3,25 +3,27 @@ import './gameover.css'
 import SCREENS from "../../../routes/screenName";
 
 
-function GameOver() {
+function GameOver(props) {
     const navigate = useNavigate()
-    console.log('entra');
 
     function goToHome() {
         navigate(SCREENS.home)
     }
     function goToGame() {
-        navigate(SCREENS.game)
+        props.callback()
     }
     function goToRank() {
+        navigate(SCREENS.ranking)
     }
 
     return (
         <>
             <div className={`gameover-container`}>
+                <div className='title-gameover'>GameOver</div>
+                <p>Score : {props.score}</p>
                 <button onClick={goToHome} className='button'>Home</button>
                 <button onClick={goToGame} className='button'>Rigioca</button>
-                <button onClick={goToRank} className='button'>RAnk</button>
+                <button onClick={goToRank} className='button'>Rank</button>
 
             </div>
 
