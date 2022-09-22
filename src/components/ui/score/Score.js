@@ -15,41 +15,33 @@ function Score(props) {
             level = 3
     }
 
-
     useEffect(() => {
         let interval;
+        console.log('gameover',props.gameover)
         if (props.gameHasStarted) {
             interval = setInterval(() => {
-
                 setScore(score + 1);
             }, 1000);
         } else {
             checkLevel();
             if (props.gameover) {
-                props.currentUser[props.currentUser.length - 1].score = score
-                localStorage.setItem('ranking', JSON.stringify(props.currentUser))
+                console.log('score da score',score);
+                props.callback(score)
             }
-
-            // props.callback({
-            //     score : score,
-            //     level : level
-            // })
-
-            // setScore(0);
-        }
+}
 
 
 
-        return () => clearInterval(interval);
+return () => clearInterval(interval);
 
 
     }, [props.gameHasStarted, score]);
 
 
-    return (
-        <div className="score-text">Score: {score}</div>
+return (
+    <div className="score-text">Score: {score}</div>
 
-    );
+);
 }
 
 export default Score

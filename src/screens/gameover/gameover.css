@@ -1,4 +1,4 @@
-.gameover-container{
+.gameover-card{
     margin: 0 auto;
     width: 60vw;
     height: 40vh;
@@ -6,7 +6,6 @@
     border: 2px solid black;
     border-radius: 20px;
     padding: 20px;
-    z-index: 3;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -15,20 +14,28 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 20px;
 }
 
-.button{
-    background-color: #2E0249;
-    width: 120px;
-    height: 30px;
-    font-size: 20px;  
-    color: white;
-    padding: 5px;
-    border-radius: 40px;
-    margin: 10px
+.gameover-container{
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .title-gameover{
+    position: absolute;
+    top: 40px;
+    font-size: 30px;
+    color: white;
+}
+
+.score-gameover{
     font-size: 30px;
     color: black;
 }
