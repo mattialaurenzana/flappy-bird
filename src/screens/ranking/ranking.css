@@ -1,5 +1,6 @@
 .ranking{
     width: 60vw;
+    height: 40vh;
     display: flex;
     justify-content: center;
     gap: 10px;
@@ -8,6 +9,8 @@
     border-radius: 20px;
     padding: 20px;
     color: white;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 .rank-container{
@@ -16,10 +19,11 @@
     width: 100vw;
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
-    gap: 30px;
+    gap: 40px;
 }
+
+
 
 table{
     padding: 25px;

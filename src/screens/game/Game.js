@@ -106,23 +106,49 @@ function Game() {
         const groundCollision = state.shuttlePosition === 480
 
         if ((groundCollision) || (pillarLeft >= 0 && pillarLeft <= PILLAR_WIDTH && (topCollision || bottomCollision))) {
-            setGameHasStarted(false);
-            setState({
-                ...state,
-                shuttleClass : 'explosion'
-            })
             setgameover(true)
-            setTimeout(() => {
-                storeData()
-                setTimeout(() => {
-                    navigate(SCREENS.gameover, {
-                        state: {
-                            username: username,
-                            score: finalscore
-                        }
-                    })
-                }, 200);
-            }, 1000);
+            setGameHasStarted(false);
+            console.log(gameover);
+
+            storeData();
+
+
+            
+
+            navigate(SCREENS.gameover, {
+                state:{
+                    username : username,
+                    score : finalscore
+                }
+            })
+            // setTimeout(() => {
+            //     storeData()
+            // }, 300);
+            // setTimeout(() => {
+            //     navigate(SCREENS.gameover, {
+            //         state: {
+            //             username: username,
+            //             score: finalscore
+            //         }
+            //     })
+            // }, 200);
+            // setGameHasStarted(false);
+            // setState({
+            //     ...state,
+            //     shuttleClass : 'explosion'
+            // })
+            // setgameover(true)
+            // setTimeout(() => {
+            //     storeData()
+            //     setTimeout(() => {
+            //         navigate(SCREENS.gameover, {
+            //             state: {
+            //                 username: username,
+            //                 score: finalscore
+            //             }
+            //         })
+            //     }, 200);
+            // }, 1000);
 
 
         }
@@ -130,13 +156,10 @@ function Game() {
     }, [state.shuttlePosition, pillarHeight, bottomPillarHeight, pillarLeft]);
 
     function storeScore(e) {
-        console.log('score da game', e);
+        console.log('score',e);
         setFinalScore(e)
     }
 
-    useEffect(() => {
-        console.log('finalscore', finalscore);
-    }, [finalscore])
 
     function storeData() {
         let presence = false
@@ -151,7 +174,7 @@ function Game() {
         if (!presence) {
             currentUser.username = username
             currentUser.score = finalscore
-            console.log('currentuser score', currentUser.score);
+            // console.log('currentuser score', currentUser.score);
             localStorageRanking.push(currentUser)
         }
         localStorage.setItem('ranking', JSON.stringify(localStorageRanking))
