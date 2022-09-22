@@ -3,13 +3,14 @@
     width: calc(100px * var(--pixel-size-game));
     overflow: hidden;
     position: absolute;
+    z-index: 2;
     top: 300px;
     left: 20px;
     transition: top .2s;
 }
 
 .explosion {
-    animation: moveSpriteSheet 2s steps(7) forwards;
+    animation: moveSpriteSheet 1s steps(7) forwards;
     top: calc(-288px * var(--pixel-size-game));
 }
 

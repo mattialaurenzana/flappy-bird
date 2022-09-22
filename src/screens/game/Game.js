@@ -103,10 +103,14 @@ function Game() {
     useEffect(() => {
         const topCollision = state.shuttlePosition >= 0 && state.shuttlePosition < pillarHeight;
         const bottomCollision = state.shuttlePosition <= 550 && state.shuttlePosition >= 550 - bottomPillarHeight;
-        const groundCollision = state.shuttlePosition === 495
+        const groundCollision = state.shuttlePosition === 480
 
         if ((groundCollision) || (pillarLeft >= 0 && pillarLeft <= PILLAR_WIDTH && (topCollision || bottomCollision))) {
             setGameHasStarted(false);
+            setState({
+                ...state,
+                shuttleClass : 'explosion'
+            })
             setgameover(true)
             setTimeout(() => {
                 storeData()
