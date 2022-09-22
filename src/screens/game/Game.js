@@ -10,27 +10,29 @@ import BgContainer from "../../components/ui/bgcontainer/BgContainer";
 function Game() {
 
     let currentUser = {};
-    let localStorageRanking = []
+    let localstorageArray = localStorage.getItem('ranking')
+    let localStorageRanking = !!localstorageArray ? JSON.parse(localstorageArray) : []
     const location = useLocation();
-    const [username,setUsername] = useState('');
+    const [username, setUsername] = useState('');
+    const [gameover, setgameover] = useState(false)
     const [state, setState] = useState({
 
         shuttlePosition: 250,
         shuttleClass: '',
-        gameover: false
     })
 
-    useEffect(()=>{
-            
+    useEffect(() => {
+
         setUsername(location.state.username);
-        
-    },[])
 
-    currentUser.username = username;
-  
-    const [score,setScore] = useState(0);
+    }, [])
 
-    
+    currentUser.username = username
+    localStorageRanking.push(currentUser)
+
+    const [score, setScore] = useState(localStorageRanking[localStorageRanking.length-1].score);
+
+
     const GAME_HEIGHT = 550;
     const GAME_WIDTH = 375;
     const SHUTTLE_SIZE = 58;
@@ -62,10 +64,10 @@ function Game() {
     const [pillarGap, setPillarGap] = useState(arrayLevel[0].pillarGap);
     const [pillarSpeed, setPillarSpeed] = useState(arrayLevel[0].pillarSpeed);
 
-    
- 
 
- 
+
+
+
     const bottomPillarHeight = GAME_HEIGHT - pillarGap - pillarHeight;
 
     // add gravity
@@ -106,7 +108,7 @@ function Game() {
     //    setScore(e.score);
     //    changeDifficulty(e.level)
     //    console.log(score);
-       
+
     // }
 
     function changeDifficulty(level) {
@@ -122,15 +124,11 @@ function Game() {
 
         if ((groundCollision) || (pillarLeft >= 0 && pillarLeft <= PILLAR_WIDTH && (topCollision || bottomCollision))) {
             setGameHasStarted(false);
-            setState({
-                ...state,
-                gameover: true
-            })
+            setgameover(true)
 
-           
-                
-                // score: state.score
-            
+
+            // score: state.score
+
             // localStorageRanking.push(currentUser)
             // localStorage.setItem('ranking', JSON.stringify(localStorageRanking));
         }
@@ -144,7 +142,7 @@ function Game() {
 
     // jump shuttle
     const handleClick = () => {
-        if (!state.gameover) {
+        if (!gameover) {
             let newShuttlePosition = state.shuttlePosition - JUMP_HEIGHT;
             let shuttleclass = 'shuttleup'
             if (!gameHasStarted) {
@@ -163,11 +161,11 @@ function Game() {
 
     }
 
-  
 
 
 
-    
+
+
     // function updateScore(e) {
     //     console.log(e);
     //     setState({
@@ -187,9 +185,9 @@ function Game() {
     function hideGameOver() {
         setState({
             ...state,
-            gameover: false,
             shuttlePosition: 250
         })
+        setgameover(false)
     }
 
 
@@ -202,7 +200,8 @@ function Game() {
             <div className="game-container" onClick={handleClick}>
                 <Score
                     gameHasStarted={gameHasStarted}
-                    currentUser={currentUser}
+                    currentUser={localStorageRanking}
+                    gameover={gameover}
                 />
 
                 <div className="game-box">
@@ -225,8 +224,9 @@ function Game() {
                         class={state.shuttleClass}
                     />
                 </div>
-                {state.gameover &&
+                {gameover &&
                     <GameOver
+                        score={score}
                         callback={hideGameOver}
                     />}
 

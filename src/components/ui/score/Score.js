@@ -5,7 +5,6 @@ function Score(props) {
 
     const [score, setScore] = useState(0);
     let level = 0;
-    let currentUser = props.currentUser;
 
     function checkLevel() {
         if (score > 10)
@@ -25,11 +24,12 @@ function Score(props) {
                 setScore(score + 1);
             }, 1000);
         } else {
-         
             checkLevel();
+            if (props.gameover) {
+                props.currentUser[props.currentUser.length - 1].score = score
+                localStorage.setItem('ranking', JSON.stringify(props.currentUser))
+            }
 
-            currentUser.score = score;
-            localStorage.setItem('ranking',JSON.stringify(currentUser))
             // props.callback({
             //     score : score,
             //     level : level
@@ -38,7 +38,7 @@ function Score(props) {
             // setScore(0);
         }
 
-       
+
 
         return () => clearInterval(interval);
 
