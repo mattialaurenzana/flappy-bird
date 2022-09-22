@@ -22,13 +22,18 @@ function Game() {
         shuttleClass: '',
     })
 
-    useEffect(() => {
-
+    useEffect(()=>{
+            
         setUsername(location.state.username);
+        
+    },[])
 
-    }, [])
+    // currentUser.username = username;
+    // localStorageRanking.push(currentUser);
+  
+    const [score,setScore] = useState(0);
 
-
+    
     const GAME_HEIGHT = 550;
     const GAME_WIDTH = 375;
     const SHUTTLE_SIZE = 58;
@@ -152,7 +157,7 @@ function Game() {
     //    setScore(e.score);
     //    changeDifficulty(e.level)
     //    console.log(score);
-
+       
     // }
 
     function changeDifficulty(level) {
@@ -167,7 +172,7 @@ function Game() {
 
     // jump shuttle
     const handleClick = () => {
-        if (!gameover) {
+        if (!state.gameover) {
             let newShuttlePosition = state.shuttlePosition - JUMP_HEIGHT;
             let shuttleclass = 'shuttleup'
             if (!gameHasStarted) {
