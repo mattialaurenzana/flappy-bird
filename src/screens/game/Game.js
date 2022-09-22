@@ -204,7 +204,7 @@ function Game() {
                 <Score
                     gameHasStarted={gameHasStarted}
                     currentUser={username}
-                    gameOver={}
+                    // gameOver={}
                 />
 
                 <div className="game-box">
