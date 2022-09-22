@@ -3,8 +3,28 @@ import Score from "../../components/ui/score/Score";
 import Shuttle from "../../components/ui/shuttle/Shuttle";
 import Pillar from "../../components/ui/pillar/Pillar";
 import './game.css'
+import { useLocation } from "react-router-dom";
 
 function Game() {
+
+    
+    const [state, setState] = useState({
+        username: '',
+        shuttlePosition: 250,
+        shuttleClass: '',
+        falling: false,
+        score: 0
+    })
+
+    const location = useLocation();
+
+
+    useEffect(()=>{
+        setState({
+            ...state,
+            username : location.state.username
+        })
+    },[])
 
     const GAME_HEIGHT = 550;
     const GAME_WIDTH = 375;
@@ -39,13 +59,6 @@ function Game() {
 
 
 
-    const [state, setState] = useState({
-        username: '',
-        shuttlePosition: 250,
-        shuttleClass: '',
-        falling: false,
-        score: 0
-    })
     const bottomPillarHeight = GAME_HEIGHT - pillarGap - pillarHeight;
 
     // add gravity
