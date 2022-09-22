@@ -9,7 +9,7 @@ function Ranking(){
 
         <>
             <div className="ranking">
-
+                
             </div>
         
         </>

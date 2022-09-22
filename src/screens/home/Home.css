@@ -55,6 +55,7 @@
 .input-banner{
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .error-banner{

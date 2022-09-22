@@ -46,6 +46,15 @@ function Home() {
     inputString = e.target.value;
   }
 
+  function handleFocus(){
+    if(state.emptyInput){
+      setState({
+        ...state,
+        emptyInput : false
+      })
+    }
+  }
+
   function handleStart() {
 
     if (inputString.length === 0) {
@@ -81,10 +90,11 @@ function Home() {
               src={require("../../assets/image/sprite-sheet.png")}
             />
           </div>
-          <div className="input-banner">
-            <InputBox
-              placeholder={"Inserire username..."}
-              callbackChange={handleInput}
+         <div className="input-banner">
+          <InputBox 
+              placeholder={"Inserire username..."} 
+              callbackChange = {handleInput}
+              callbackFocus = {handleFocus}
             />
             {
               state.emptyInput &&
