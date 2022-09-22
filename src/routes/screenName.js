@@ -1,7 +1,6 @@
 const SCREENS = {
     home: '/', 
     game: '/game',
-    winLose: '/winlose',
     ranking: '/ranking'
 }
 

@@ -13,6 +13,7 @@ function GameOver(props) {
         props.callback()
     }
     function goToRank() {
+        navigate(SCREENS.ranking)
     }
 
     return (
