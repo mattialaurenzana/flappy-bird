@@ -8,6 +8,11 @@
     transition: top .2s;
 }
 
+.explosion {
+    animation: moveSpriteSheet 2s steps(7) forwards;
+    top: calc(-288px * var(--pixel-size-game));
+}
+
 .shuttle {
     position: absolute;
     left: 0;
@@ -15,15 +20,26 @@
 }
 
 .shuttleup {
-    left: calc(-200px * var(--pixel-size-game));
-    top: calc(-96px * var(--pixel-size-game));
+    transform: rotate(-45deg);
+    transition-duration: 1s;
+
+    /* transform-origin: top left; */
 }
 
 .shuttledown {
-    left: calc(-500px * var(--pixel-size-game));
-    top: calc(-96px * var(--pixel-size-game));
+    transform: rotate(45deg) 1s;
 }
 
 :root {
     --pixel-size-game: 0.7;
+}
+
+@keyframes moveSpriteSheet {
+    from {
+        transform: translate3d(0px, 0, 0)
+    }
+
+    to {
+        transform: translate3d(-100%, 0, 0)
+    }
 }

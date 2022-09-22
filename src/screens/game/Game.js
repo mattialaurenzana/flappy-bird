@@ -56,8 +56,8 @@ function Game() {
                 setState({
                     ...state,
                     shuttlePosition: state.shuttlePosition + GRAVITY,
-                    falling: true
-                    // shuttleClass: 'shuttledown'
+                    falling: true,
+                    shuttleClass: 'shuttledown'
                 })
 
             }, 24)
@@ -80,7 +80,7 @@ function Game() {
     //         }, 1000);
     //     }
     //     return () => clearTimeout(timer);
-    // }, [state.falling]);
+    // }, [state.falling,state.shuttleClass]);
 
     // add pillar
     useEffect(() => {
@@ -109,7 +109,7 @@ function Game() {
             setState({
                 ...state,
                 shuttlePosition: 250,
-                shuttleClass: '',
+                shuttleClass: 'explosion',
                 falling: false,
             })
         }
