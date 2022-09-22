@@ -108,19 +108,26 @@ function Game() {
         if ((groundCollision) || (pillarLeft >= 0 && pillarLeft <= PILLAR_WIDTH && (topCollision || bottomCollision))) {
             setgameover(true)
             setGameHasStarted(false);
-            console.log(gameover);
-
-            storeData();
-
-
-            
-
-            navigate(SCREENS.gameover, {
-                state:{
-                    username : username,
-                    score : finalscore
-                }
+            setState({
+                ...state,
+                shuttleClass : 'explosion'
             })
+            setTimeout(() => {
+                storeData();
+                setTimeout(() => {
+                    navigate(SCREENS.gameover, {
+                        state: {
+                            username: username,
+                            score: finalscore
+                        }
+                    })
+                }, 200);
+            }, 1000);
+
+
+
+
+
             // setTimeout(() => {
             //     storeData()
             // }, 300);
@@ -156,7 +163,7 @@ function Game() {
     }, [state.shuttlePosition, pillarHeight, bottomPillarHeight, pillarLeft]);
 
     function storeScore(e) {
-        console.log('score',e);
+        console.log('score', e);
         setFinalScore(e)
     }
 
