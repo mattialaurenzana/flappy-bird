@@ -7,52 +7,52 @@ import React from "react";
 import "./ranking.css";
 
 function Ranking() {
-  const users = [
-    {
-      username: "luca",
-      score: "3",
-    },
-    {
-      username: "Mattia",
-      score: "5",
-    },
-    {
-      username: "teo",
-      score: "55",
-    },
-    {
-      username: "flavio",
-      score: "18",
-    },
-    {
-        username: "gigi",
-        score: "100",
-      },
-      {
-        username: "erika",
-        score: "1005",
-      },
-      {
-        username: "erika",
-        score: "1005",
-      },
-      {
-        username: "erika",
-        score: "1005",
-      },
-      {
-        username: "erika",
-        score: "1005",
-      },
-      {
-        username: "erika",
-        score: "1005",
-      },
-      {
-        username: "erika",
-        score: "1005",
-      },
-  ];
+  // const users = [
+  //   {
+  //     username: "luca",
+  //     score: "3",
+  //   },
+  //   {
+  //     username: "Mattia",
+  //     score: "5",
+  //   },
+  //   {
+  //     username: "teo",
+  //     score: "55",
+  //   },
+  //   {
+  //     username: "flavio",
+  //     score: "18",
+  //   },
+  //   {
+  //       username: "gigi",
+  //       score: "100",
+  //     },
+  //     {
+  //       username: "erika",
+  //       score: "1005",
+  //     },
+  //     {
+  //       username: "erika",
+  //       score: "1005",
+  //     },
+  //     {
+  //       username: "erika",
+  //       score: "1005",
+  //     },
+  //     {
+  //       username: "erika",
+  //       score: "1005",
+  //     },
+  //     {
+  //       username: "erika",
+  //       score: "1005",
+  //     },
+  //     {
+  //       username: "erika",
+  //       score: "1005",
+  //     },
+  // ];
 
   
 

@@ -21,7 +21,7 @@
     /* background-color: aliceblue; */
 }
 
-@media screen and (min-height:800px) {
+@media ((min-height:800px) and (min-width:500px)){
     .game-box {
         position: absolute;
         bottom: 80px;
