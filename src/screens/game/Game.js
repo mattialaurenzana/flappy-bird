@@ -142,18 +142,18 @@ function Game() {
     }
 
     function updateScore(e) {
+        console.log(e);
         setState({
             ...state,
             score: e.score
         })
-        localStorage.setItem('ranking', JSON.stringify(localStorageRanking));
+      
         changeDifficulty(e.level)
     }
 
 
 
     function changeDifficulty(level) {
-        console.log('level', level);
         setPillarGap(arrayLevel[level].pillarGap)
         setPillarSpeed(arrayLevel[level].pillarSpeed)
     }

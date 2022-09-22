@@ -24,15 +24,18 @@ function Score(props) {
                 setScore(score + 1);
             }, 1000);
         } else {
-            setScore(0)
+            setScore(0);
+            props.callback({
+                score : score
+            })
         }
 
         checkLevel()
 
-        props.callback({
-            score: score,
-            level: level
-        })
+        // props.callback({
+        //     score: score,
+        //     level: level
+        // })
 
         return () => clearInterval(interval);
 
