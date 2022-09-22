@@ -8,7 +8,7 @@ function GameOver(props) {
     const navigate = useNavigate()
 
     const [arrRank, setarrRank] = useState(JSON.parse(localStorage.getItem('ranking')))
-    console.log(arrRank[arrRank.length - 1].score);
+    // console.log(arrRank[arrRank.length - 1].score);
     const [userScore, setuserScore] = useState(props.score)
 
 
