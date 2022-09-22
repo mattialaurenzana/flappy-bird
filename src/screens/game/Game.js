@@ -5,21 +5,32 @@ import Pillar from "../../components/ui/pillar/Pillar";
 import BgContainer from "../../components/ui/bgcontainer/BgContainer";
 import './game.css'
 import { useLocation } from "react-router-dom";
-import BgContainer from "../../components/ui/bgcontainer/BgContainer";
 import GameOver from "../../components/ui/gameover/GameOver";
 
 function Game() {
 
+    let currentUser = {};
     let localStorageRanking = []
-
     const location = useLocation();
+    const [username,setUsername] = useState('');
+    const [state, setState] = useState({
+
+        shuttlePosition: 250,
+        shuttleClass: '',
+        gameover: false
+    })
+
     useEffect(()=>{
-        setState({
-            ...state,
-            username : location.state.username
-        })
+            
+        setUsername(location.state.username);
+        
     },[])
 
+    currentUser.username = username;
+  
+    const [score,setScore] = useState(0);
+
+    
     const GAME_HEIGHT = 550;
     const GAME_WIDTH = 375;
     const SHUTTLE_SIZE = 58;
@@ -50,18 +61,11 @@ function Game() {
     const [gameHasStarted, setGameHasStarted] = useState(false);
     const [pillarGap, setPillarGap] = useState(arrayLevel[0].pillarGap);
     const [pillarSpeed, setPillarSpeed] = useState(arrayLevel[0].pillarSpeed);
+
+    
  
 
-
-
-
-    const [state, setState] = useState({
-        username: location.user,
-        shuttlePosition: 250,
-        shuttleClass: '',
-        score: 0,
-        gameover: false
-    })
+ 
     const bottomPillarHeight = GAME_HEIGHT - pillarGap - pillarHeight;
 
     // add gravity
@@ -97,6 +101,19 @@ function Game() {
         }
     }, [gameHasStarted, pillarLeft])
 
+
+    // function updateScore(e) {
+    //    setScore(e.score);
+    //    changeDifficulty(e.level)
+    //    console.log(score);
+       
+    // }
+
+    function changeDifficulty(level) {
+        setPillarGap(arrayLevel[level].pillarGap)
+        setPillarSpeed(arrayLevel[level].pillarSpeed)
+    }
+
     // check collisions
     useEffect(() => {
         const topCollision = state.shuttlePosition >= 0 && state.shuttlePosition < pillarHeight;
@@ -109,12 +126,13 @@ function Game() {
                 ...state,
                 gameover:true
             })
-            let currentUser = {
-                username: state.username,
-                score: state.score
-            }
-            localStorageRanking.push(currentUser)
-            localStorage.setItem('ranking', JSON.stringify(localStorageRanking));
+
+           
+                
+                // score: state.score
+            
+            // localStorageRanking.push(currentUser)
+            // localStorage.setItem('ranking', JSON.stringify(localStorageRanking));
         }
 
     }, [state.shuttlePosition, pillarHeight, bottomPillarHeight, pillarLeft]);
@@ -142,22 +160,11 @@ function Game() {
         })
     }
 
-    function updateScore(e) {
-        console.log(e);
-        setState({
-            ...state,
-            score: e.score
-        })
-      
-        changeDifficulty(e.level)
-    }
+  
 
 
 
-    function changeDifficulty(level) {
-        setPillarGap(arrayLevel[level].pillarGap)
-        setPillarSpeed(arrayLevel[level].pillarSpeed)
-    }
+    
 
 
     return (
@@ -169,7 +176,7 @@ function Game() {
             <div className="game-container" onClick={handleClick}>
                 <Score
                     gameHasStarted={gameHasStarted}
-                    callback={updateScore}
+                    currentUser={currentUser}
                 />
 
                 <div className="game-box">
