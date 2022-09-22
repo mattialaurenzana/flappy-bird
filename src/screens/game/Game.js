@@ -22,18 +22,18 @@ function Game() {
         shuttleClass: '',
     })
 
-    useEffect(()=>{
-            
+    useEffect(() => {
+
         setUsername(location.state.username);
-        
-    },[])
+
+    }, [])
 
     // currentUser.username = username;
     // localStorageRanking.push(currentUser);
-  
-    const [score,setScore] = useState(0);
 
-    
+    const [score, setScore] = useState(0);
+
+
     const GAME_HEIGHT = 550;
     const GAME_WIDTH = 375;
     const SHUTTLE_SIZE = 58;
@@ -103,7 +103,7 @@ function Game() {
     useEffect(() => {
         const topCollision = state.shuttlePosition >= 0 && state.shuttlePosition < pillarHeight;
         const bottomCollision = state.shuttlePosition <= 550 && state.shuttlePosition >= 550 - bottomPillarHeight;
-        const groundCollision = state.shuttlePosition === 495
+        const groundCollision = state.shuttlePosition === 480
 
         if ((groundCollision) || (pillarLeft >= 0 && pillarLeft <= PILLAR_WIDTH && (topCollision || bottomCollision))) {
             setgameover(true)
@@ -132,6 +132,24 @@ function Game() {
             //         }
             //     })
             // }, 200);
+            // setGameHasStarted(false);
+            // setState({
+            //     ...state,
+            //     shuttleClass : 'explosion'
+            // })
+            // setgameover(true)
+            // setTimeout(() => {
+            //     storeData()
+            //     setTimeout(() => {
+            //         navigate(SCREENS.gameover, {
+            //             state: {
+            //                 username: username,
+            //                 score: finalscore
+            //             }
+            //         })
+            //     }, 200);
+            // }, 1000);
+
 
         }
 
@@ -167,7 +185,7 @@ function Game() {
     //    setScore(e.score);
     //    changeDifficulty(e.level)
     //    console.log(score);
-       
+
     // }
 
     function changeDifficulty(level) {

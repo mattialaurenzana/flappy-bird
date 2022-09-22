@@ -9,15 +9,24 @@ import Button from "../../components/ui/button/Button";
 function GameOver() {
     const navigate = useNavigate()
     const location = useLocation()
+    let bestScoreArray = JSON.parse(localStorage.getItem('ranking'))
     let score = location.state.score
+    const [bestScore, setBestScore] = useState(0)
 
+    useEffect(() => {
+        bestScoreArray.forEach(e => {
+            if (e.username === location.state.username && e.score > bestScore) {
+                setBestScore(e.score)
+            }
+        });
+    }, [])
 
     function goToHome() {
         navigate(SCREENS.home)
     }
     function goToGame() {
-        navigate(SCREENS.game,{
-            state:{
+        navigate(SCREENS.game, {
+            state: {
                 username: location.state.username
             }
         })
@@ -32,7 +41,8 @@ function GameOver() {
             <div className="gameover-container">
                 <h1 className='title-gameover'>Game Over!</h1>
                 <div className={`gameover-card`}>
-                    <p className="score-gameover">Score : {score}</p>
+                    <div className="score-gameover">Score : {score}</div>
+                    <div>Best Score: {bestScore}</div>
                     <Button
                         callback={goToHome}
                         label={'Home'}
