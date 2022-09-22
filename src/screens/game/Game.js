@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import Score from "../../components/ui/score/Score";
 import Shuttle from "../../components/ui/shuttle/Shuttle";
 import Pillar from "../../components/ui/pillar/Pillar";
-import BgContainer from "../../components/ui/bgcontainer/BgContainer";
 import './game.css'
 import { useLocation } from "react-router-dom";
 import BgContainer from "../../components/ui/bgcontainer/BgContainer";
@@ -13,12 +12,12 @@ function Game() {
     let localStorageRanking = []
 
     const location = useLocation();
-    useEffect(()=>{
+    useEffect(() => {
         setState({
             ...state,
-            username : location.state.username
+            username: location.state.username
         })
-    },[])
+    }, [])
 
     const GAME_HEIGHT = 550;
     const GAME_WIDTH = 375;
@@ -50,10 +49,6 @@ function Game() {
     const [gameHasStarted, setGameHasStarted] = useState(false);
     const [pillarGap, setPillarGap] = useState(arrayLevel[0].pillarGap);
     const [pillarSpeed, setPillarSpeed] = useState(arrayLevel[0].pillarSpeed);
- 
-
-
-
 
     const [state, setState] = useState({
         username: location.user,
@@ -107,7 +102,7 @@ function Game() {
             setGameHasStarted(false);
             setState({
                 ...state,
-                gameover:true
+                gameover: true
             })
             let currentUser = {
                 username: state.username,
@@ -126,20 +121,23 @@ function Game() {
 
     // jump shuttle
     const handleClick = () => {
-        let newShuttlePosition = state.shuttlePosition - JUMP_HEIGHT;
-        let shuttleclass = 'shuttleup'
-        if (!gameHasStarted) {
-            setGameHasStarted(true)
-            shuttleclass = 'shuttledown'
-        } else if (newShuttlePosition < 0) {
-            shuttleclass = 'shuttleup'
-            newShuttlePosition = 0
+        if (!state.gameover) {
+            let newShuttlePosition = state.shuttlePosition - JUMP_HEIGHT;
+            let shuttleclass = 'shuttleup'
+            if (!gameHasStarted) {
+                setGameHasStarted(true)
+                shuttleclass = 'shuttledown'
+            } else if (newShuttlePosition < 0) {
+                shuttleclass = 'shuttleup'
+                newShuttlePosition = 0
+            }
+            setState({
+                ...state,
+                shuttlePosition: newShuttlePosition,
+                shuttleClass: shuttleclass
+            })
         }
-        setState({
-            ...state,
-            shuttlePosition: newShuttlePosition,
-            shuttleClass: shuttleclass
-        })
+
     }
 
     function updateScore(e) {
@@ -148,15 +146,22 @@ function Game() {
             ...state,
             score: e.score
         })
-      
+
         changeDifficulty(e.level)
     }
-
 
 
     function changeDifficulty(level) {
         setPillarGap(arrayLevel[level].pillarGap)
         setPillarSpeed(arrayLevel[level].pillarSpeed)
+    }
+
+    function hideGameOver() {
+        setState({
+            ...state,
+            gameover: false,
+            shuttlePosition: 250
+        })
     }
 
 
@@ -192,8 +197,10 @@ function Game() {
                         class={state.shuttleClass}
                     />
                 </div>
-                { state.gameover && <GameOver 
-                />}
+                {state.gameover &&
+                    <GameOver
+                        callback={hideGameOver}
+                    />}
 
             </div>
         </>
