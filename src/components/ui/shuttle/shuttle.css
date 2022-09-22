@@ -19,16 +19,14 @@
     width: calc(698px * var(--pixel-size-game));
 }
 
-.shuttleup {
-    transform: rotate(-45deg);
-    transition-duration: 1s;
+/* .shuttleup {
+    left: calc(-px * var(--pixel-size-game));
 
-    /* transform-origin: top left; */
 }
 
 .shuttledown {
-    transform: rotate(45deg) 1s;
-}
+    left: calc(-288px * var(--pixel-size-game));
+} */
 
 :root {
     --pixel-size-game: 0.7;
