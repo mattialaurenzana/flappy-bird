@@ -22,18 +22,18 @@ function Game() {
         shuttleClass: '',
     })
 
-    useEffect(()=>{
-            
+    useEffect(() => {
+
         setUsername(location.state.username);
-        
-    },[])
+
+    }, [])
 
     // currentUser.username = username;
     // localStorageRanking.push(currentUser);
-  
-    const [score,setScore] = useState(0);
 
-    
+    const [score, setScore] = useState(0);
+
+
     const GAME_HEIGHT = 550;
     const GAME_WIDTH = 375;
     const SHUTTLE_SIZE = 58;
@@ -110,15 +110,16 @@ function Game() {
             setgameover(true)
             setTimeout(() => {
                 storeData()
-            }, 300);
-            setTimeout(() => {
-                navigate(SCREENS.gameover, {
-                    state: {
-                        username: username,
-                        score: finalscore
-                    }
-                })
-            }, 200);
+                setTimeout(() => {
+                    navigate(SCREENS.gameover, {
+                        state: {
+                            username: username,
+                            score: finalscore
+                        }
+                    })
+                }, 200);
+            }, 1000);
+
 
         }
 
@@ -157,7 +158,7 @@ function Game() {
     //    setScore(e.score);
     //    changeDifficulty(e.level)
     //    console.log(score);
-       
+
     // }
 
     function changeDifficulty(level) {
