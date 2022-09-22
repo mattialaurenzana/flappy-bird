@@ -5,6 +5,7 @@ import Pillar from "../../components/ui/pillar/Pillar";
 import './game.css'
 import { useLocation } from "react-router-dom";
 import BgContainer from "../../components/ui/bgcontainer/BgContainer";
+import GameOver from "../../components/ui/gameover/GameOver";
 
 function Game() {
 
@@ -48,7 +49,8 @@ function Game() {
         username: location.user,
         shuttlePosition: 250,
         shuttleClass: '',
-        score: 0
+        score: 0,
+        gameover: false
     })
     const bottomPillarHeight = GAME_HEIGHT - pillarGap - pillarHeight;
 
@@ -95,6 +97,7 @@ function Game() {
             setGameHasStarted(false);
             setState({
                 ...state,
+                gameover:true
             })
             let element = {
                 username: state.username,
@@ -180,7 +183,8 @@ function Game() {
                         class={state.shuttleClass}
                     />
                 </div>
-
+                { state.gameover && <GameOver 
+                />}
 
             </div>
         </>
