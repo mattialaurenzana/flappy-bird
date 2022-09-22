@@ -2,4 +2,16 @@
     color: white;
     margin-top: 30px;
     font-size: 35px;
+    /* position: absolute;
+    top: 50px; */
+}
+
+@media screen and (min-height:800px){
+    .score-text {
+        color: white;
+        margin-top: 30px;
+        font-size: 60px;
+        position: absolute;
+        top: 50px;
+    }
 }
