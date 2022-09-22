@@ -17,7 +17,6 @@ function Score(props) {
 
     useEffect(() => {
         let interval;
-        console.log('gameover',props.gameover)
         if (props.gameHasStarted) {
             interval = setInterval(() => {
                 setScore(score + 1);
@@ -25,7 +24,7 @@ function Score(props) {
         } else {
             checkLevel();
             if (props.gameover) {
-                console.log('score da score',score);
+                console.log('overrr');
                 props.callback(score)
             }
 }

@@ -10,7 +10,7 @@ function GameOver() {
     const navigate = useNavigate()
     const location = useLocation()
     let score = location.state.score
-    console.log(score);
+
 
     function goToHome() {
         navigate(SCREENS.home)

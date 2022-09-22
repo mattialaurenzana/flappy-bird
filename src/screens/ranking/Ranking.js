@@ -18,15 +18,35 @@ function Ranking() {
     },
     {
       username: "teo",
-      score: "15",
+      score: "55",
     },
     {
       username: "flavio",
-      score: "10",
+      score: "18",
     },
     {
         username: "gigi",
         score: "100",
+      },
+      {
+        username: "erika",
+        score: "1005",
+      },
+      {
+        username: "erika",
+        score: "1005",
+      },
+      {
+        username: "erika",
+        score: "1005",
+      },
+      {
+        username: "erika",
+        score: "1005",
+      },
+      {
+        username: "erika",
+        score: "1005",
       },
       {
         username: "erika",
@@ -37,7 +57,7 @@ function Ranking() {
   
 
   const getRanking = JSON.parse(localStorage.getItem("ranking"));
-  console.log(getRanking);
+//   console.log('ranking',getRanking);
   getRanking.sort((a,b) => b.score - a.score);
   const navigate = useNavigate();
 
@@ -45,9 +65,9 @@ function Ranking() {
     navigate(SCREENS.home);
   }
 
-  function sortRanking(){
-    users.sort((a,b) => b.score - a.score)
-  }
+//   function sortRanking(){
+//     users.sort((a,b) => b.score - a.score)
+//   }
 
   return (
     <>
@@ -66,7 +86,7 @@ function Ranking() {
 
                 <tbody>
                    { 
-                    users.map((el,key) => {
+                    getRanking.map((el,key) => {
                         return(
                             <React.Fragment key={key + Date.now()}>
                                 <tr>
