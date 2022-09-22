@@ -3,8 +3,12 @@ import Score from "../../components/ui/score/Score";
 import Shuttle from "../../components/ui/shuttle/Shuttle";
 import Pillar from "../../components/ui/pillar/Pillar";
 import './game.css'
+import { useLocation } from "react-router-dom";
+import BgContainer from "../../components/ui/bgcontainer/BgContainer";
 
 function Game() {
+
+    const location = useLocation()
 
     const GAME_HEIGHT = 550;
     const GAME_WIDTH = 375;
@@ -36,14 +40,14 @@ function Game() {
     const [gameHasStarted, setGameHasStarted] = useState(false);
     const [pillarGap, setPillarGap] = useState(arrayLevel[0].pillarGap);
     const [pillarSpeed, setPillarSpeed] = useState(arrayLevel[0].pillarSpeed);
+    let localStorageRanking = []
 
 
 
     const [state, setState] = useState({
-        username: '',
+        username: location.user,
         shuttlePosition: 250,
         shuttleClass: '',
-        falling: false,
         score: 0
     })
     const bottomPillarHeight = GAME_HEIGHT - pillarGap - pillarHeight;
@@ -56,10 +60,7 @@ function Game() {
                 setState({
                     ...state,
                     shuttlePosition: state.shuttlePosition + GRAVITY,
-                    falling: true,
-                    shuttleClass: 'shuttledown'
                 })
-
             }, 24)
         }
         return () => {
@@ -67,20 +68,6 @@ function Game() {
         }
 
     }, [state.shuttlePosition, gameHasStarted])
-
-    // useEffect(() => {
-    //     let timer
-    //     if (state.falling) {
-    //         timer = setTimeout(() => {
-    //             console.log('down');
-    //             setState({
-    //                 ...state,
-    //                 shuttleClass: 'shuttledown'
-    //             })
-    //         }, 1000);
-    //     }
-    //     return () => clearTimeout(timer);
-    // }, [state.falling,state.shuttleClass]);
 
     // add pillar
     useEffect(() => {
@@ -108,10 +95,14 @@ function Game() {
             setGameHasStarted(false);
             setState({
                 ...state,
-                shuttlePosition: 250,
-                shuttleClass: 'explosion',
-                falling: false,
             })
+            let element = {
+                username: state.username,
+                score: state.score
+            }
+            console.log(element);
+            localStorageRanking.push(element)
+            localStorage.setItem('ranking', JSON.stringify(localStorageRanking));
         }
 
     }, [state.shuttlePosition, pillarHeight, bottomPillarHeight, pillarLeft]);
@@ -144,6 +135,7 @@ function Game() {
             ...state,
             score: e.score
         })
+        localStorage.setItem('ranking', JSON.stringify(localStorageRanking));
         changeDifficulty(e.level)
     }
 
@@ -158,6 +150,10 @@ function Game() {
 
     return (
         <>
+            <BgContainer
+                moonanimation={'moonanimation'}
+                bganimation={'bganimation'}
+            />
             <div className="game-container" onClick={handleClick}>
                 <Score
                     gameHasStarted={gameHasStarted}

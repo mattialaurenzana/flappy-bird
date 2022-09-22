@@ -10,7 +10,6 @@ import Ranking from './screens/ranking/Ranking';
 function App() {
   return (
     <div className="App">
-      <BgContainer/>
         <Routes>
           <Route path={SCREENS.home} element={<Home/>} />
           <Route path={SCREENS.winLose} element={<WinLose />}/>

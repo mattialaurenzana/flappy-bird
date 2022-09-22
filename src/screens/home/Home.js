@@ -6,7 +6,7 @@ import "./Home.css";
 import Button from "../../components/ui/button/Button";
 import InputBox from "../../components/ui/inputbox/InputBox";
 import { AiFillQuestionCircle } from "react-icons/ai";
-import {BiErrorAlt} from "react-icons/bi"
+import { BiErrorAlt } from "react-icons/bi"
 import { Link, useNavigate, useNavigation, useParams } from "react-router-dom";
 import SCREENS from "../../routes/screenName";
 
@@ -14,11 +14,9 @@ function Home() {
   const navigate = useNavigate();
   let inputString = "";
 
-  let localStorageRanking = [];
-
   const [state, setState] = useState({
     tutIsVisible: false,
-    emptyInput : false
+    emptyInput: false
   });
 
   // useEffect(() => {
@@ -43,35 +41,38 @@ function Home() {
     navigate(SCREENS.ranking);
   }
 
-  function handleInput(e){
+  function handleInput(e) {
 
-     inputString = e.target.value;
+    inputString = e.target.value;
   }
 
   function handleStart() {
 
-    if(inputString.length === 0){
+    if (inputString.length === 0) {
       setState({
         ...state,
-        emptyInput : true
+        emptyInput: true
       })
-    }else{
+    } else {
 
       //creazione dellnuovo oggetto user e aggiunta al local storage
-      const currentUser =  {};
+      const currentUser = {};
       currentUser.username = inputString;
-      localStorageRanking.push(currentUser);
-      localStorage.setItem('ranking',JSON.stringify(localStorageRanking));
-      navigate(SCREENS.game);
+      navigate(SCREENS.game, {
+        user: {
+          username: currentUser.username,
+        }
+      });
     }
-    
+
   }
 
   return (
     <>
+      <BgContainer />
       {state.tutIsVisible && <Tutorial callback={closeWindowTutorial} />}
 
-      { !state.tutIsVisible &&
+      {!state.tutIsVisible &&
         <div className="home-container">
           <h1 className="title">Flappy Ufo</h1>
           <div className="img-container">
@@ -80,10 +81,10 @@ function Home() {
               src={require("../../assets/image/sprite-sheet.png")}
             />
           </div>
-         <div className="input-banner">
-          <InputBox 
-              placeholder={"Inserire username..."} 
-              callbackChange = {handleInput}
+          <div className="input-banner">
+            <InputBox
+              placeholder={"Inserire username..."}
+              callbackChange={handleInput}
             />
             {
               state.emptyInput &&
@@ -92,7 +93,7 @@ function Home() {
                 <div className="error-text">Inserire almeno un carattere</div>
               </div>
             }
-         </div>
+          </div>
 
           <Button label={"Gioca"} callback={handleStart} />
           <Button label={"Classifica"} callback={goToWinLose} />
