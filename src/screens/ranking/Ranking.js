@@ -37,6 +37,8 @@ function Ranking() {
   
 
   const getRanking = JSON.parse(localStorage.getItem("ranking"));
+  console.log(getRanking);
+  getRanking.sort((a,b) => b.score - a.score);
   const navigate = useNavigate();
 
   function goToHome() {
@@ -46,8 +48,6 @@ function Ranking() {
   function sortRanking(){
     users.sort((a,b) => b.score - a.score)
   }
-
-  sortRanking();
 
   return (
     <>
@@ -83,7 +83,6 @@ function Ranking() {
 
                 </tbody>
             </table>
-         
         
         </div>
         <Button label={"Home"} callback={goToHome} />
