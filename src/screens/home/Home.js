@@ -67,9 +67,11 @@ function Home() {
       //creazione dellnuovo oggetto user e aggiunta al local storage
       const currentUser = {};
       currentUser.username = inputString;
-      navigate(SCREENS.game, {
-        user: {
-          username: currentUser.username,
+      // localStorageRanking.push(currentUser);
+      // localStorage.setItem('ranking',JSON.stringify(localStorageRanking));
+      navigate(SCREENS.game,{
+        state : {
+          username : currentUser.username
         }
       });
     }

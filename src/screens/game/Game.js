@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import Score from "../../components/ui/score/Score";
 import Shuttle from "../../components/ui/shuttle/Shuttle";
 import Pillar from "../../components/ui/pillar/Pillar";
+import BgContainer from "../../components/ui/bgcontainer/BgContainer";
 import './game.css'
 import { useLocation } from "react-router-dom";
 import BgContainer from "../../components/ui/bgcontainer/BgContainer";
@@ -9,7 +10,15 @@ import GameOver from "../../components/ui/gameover/GameOver";
 
 function Game() {
 
-    const location = useLocation()
+    let localStorageRanking = []
+
+    const location = useLocation();
+    useEffect(()=>{
+        setState({
+            ...state,
+            username : location.state.username
+        })
+    },[])
 
     const GAME_HEIGHT = 550;
     const GAME_WIDTH = 375;
@@ -41,7 +50,8 @@ function Game() {
     const [gameHasStarted, setGameHasStarted] = useState(false);
     const [pillarGap, setPillarGap] = useState(arrayLevel[0].pillarGap);
     const [pillarSpeed, setPillarSpeed] = useState(arrayLevel[0].pillarSpeed);
-    let localStorageRanking = []
+ 
+
 
 
 
@@ -99,12 +109,11 @@ function Game() {
                 ...state,
                 gameover:true
             })
-            let element = {
+            let currentUser = {
                 username: state.username,
                 score: state.score
             }
-            console.log(element);
-            localStorageRanking.push(element)
+            localStorageRanking.push(currentUser)
             localStorage.setItem('ranking', JSON.stringify(localStorageRanking));
         }
 
@@ -134,18 +143,18 @@ function Game() {
     }
 
     function updateScore(e) {
+        console.log(e);
         setState({
             ...state,
             score: e.score
         })
-        localStorage.setItem('ranking', JSON.stringify(localStorageRanking));
+      
         changeDifficulty(e.level)
     }
 
 
 
     function changeDifficulty(level) {
-        console.log('level', level);
         setPillarGap(arrayLevel[level].pillarGap)
         setPillarSpeed(arrayLevel[level].pillarSpeed)
     }
