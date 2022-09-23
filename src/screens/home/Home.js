@@ -8,14 +8,11 @@ import { AiFillQuestionCircle, AiFillCloseCircle } from "react-icons/ai";
 import { BiErrorAlt } from "react-icons/bi"
 import { Link, useNavigate, useNavigation, useParams } from "react-router-dom";
 import SCREENS from "../../routes/screenName";
-import { Howl, Howler } from 'howler'
-import homeAudio from '../../assets/audio/home-audio.mp3'
+
 
 
 
 function Home() {
-
-  const [play, setPlay] = useState(false);
 
   const navigate = useNavigate();
   let inputString = "";
@@ -25,9 +22,7 @@ function Home() {
     emptyInput: false
   });
 
-  // useEffect(() => {
-  //   localStorageRanking = JSON.parse(localStorage.getItem('ranking'));
-  // },[])
+
 
   function closeWindowTutorial() {
     setState({
@@ -36,14 +31,7 @@ function Home() {
     });
   }
 
-  const playSound = () => {
-    console.log('audio');
-    let sound = new Howl({
-      src: [homeAudio],
-      volume: 0.3
-    })
-    sound.play()
-  }
+  
 
   function seeWindowTutorial() {
     setState({
@@ -104,7 +92,7 @@ function Home() {
         </>}
 
       {!state.tutIsVisible &&
-        <div className="home-container" onClick={playSound}>
+        <div className="home-container" >
           <h1 className="title">Flying shuttle</h1>
           <div className="img-container">
             <img
