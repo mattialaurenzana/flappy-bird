@@ -89,7 +89,7 @@ function Home() {
       // localStorage.setItem('ranking',JSON.stringify(localStorageRanking));
       navigate(SCREENS.game,{
         state : {
-          username : currentUser.username
+          username : currentUser.username.toLowerCase()
         }
       });
     }

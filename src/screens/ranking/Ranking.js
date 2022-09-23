@@ -54,20 +54,20 @@ function Ranking() {
   //     },
   // ];
 
-  
 
-  const getRanking = JSON.parse(localStorage.getItem("ranking"));
-//   console.log('ranking',getRanking);
-  getRanking.sort((a,b) => b.score - a.score);
+
+  const getRanking = !!JSON.parse(localStorage.getItem("ranking")) ? JSON.parse(localStorage.getItem("ranking")) : [];
+  //   console.log('ranking',getRanking);
+  getRanking.sort((a, b) => b.score - a.score);
   const navigate = useNavigate();
 
   function goToHome() {
     navigate(SCREENS.home);
   }
 
-//   function sortRanking(){
-//     users.sort((a,b) => b.score - a.score)
-//   }
+  //   function sortRanking(){
+  //     users.sort((a,b) => b.score - a.score)
+  //   }
 
   return (
     <>
@@ -75,35 +75,33 @@ function Ranking() {
       <div className="rank-container">
         <h1 className="title-ranking">Flying shuttle</h1>
         <div className="ranking">
-            <table>
-                 <thead>
-                    <tr>
-                        <th>Position</th>
-                        <th>User</th>
-                        <th>Score</th>
-                    </tr>
-                </thead>
- 
-                <tbody>
-                   { 
-                    getRanking.map((el,key) => {
-                        return(
-                            <React.Fragment key={key + Date.now()}>
-                                <tr>
-                                    <td>{key + 1}</td>
-                                    <td>{el.username}</td>
-                                    <td>{el.score}</td>
-                                </tr>
-                                
-                            </React.Fragment>
-                        )
-                    })
+          <table>
+            <thead>
+              <tr>
+                <th>Position</th>
+                <th>User</th>
+                <th>Score</th>
+              </tr>
+            </thead>
 
-                    }
+            <tbody>
+              {
+                getRanking.map((el, key) => {
+                  return (
+                    <React.Fragment key={key + Date.now()}>
+                      <tr>
+                        <td>{key + 1}</td>
+                        <td>{el.username}</td>
+                        <td>{el.score}</td>
+                      </tr>
 
-                </tbody>
-            </table>
-        
+                    </React.Fragment>
+                  )
+                })}
+
+            </tbody>
+          </table>
+
         </div>
         <Button label={"Home"} callback={goToHome} />
       </div>

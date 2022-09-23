@@ -16,6 +16,8 @@
   left: 0;
   right: 0;
   background: url('../../../assets/image/sfondo.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .bganimation {
@@ -42,9 +44,17 @@
   overflow: hidden;
 }
 
-.moonanimation {
-  animation: moving-images 200s linear infinite;
-
+.moonanimationlevel1{
+  animation: moving-images 50s linear infinite;
+}
+.moonanimationlevel2{
+  animation: moving-images 50s linear infinite;
+}
+.moonanimationlevel3{
+  animation: moving-images 20s linear infinite;
+}
+.moonanimationlevel4{
+  animation: moving-images 10s linear infinite;
 }
 
 @keyframes moving-bg {

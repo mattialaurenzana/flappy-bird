@@ -44,10 +44,6 @@
     left: 0;
 }
 
-.shuttle-explosion {
-    top: -288px;
-}
-
 .pixelart {
     image-rendering: pixelated;
 }
@@ -85,7 +81,7 @@
         flex-direction: column;
         justify-content: center;
         z-index: 2;
-        gap: 50px;
+        gap: 35px;
     }
 
     .title{
@@ -94,6 +90,25 @@
 
     :root{
         --pixel-size: 3.0
+    }
+
+    .error-banner{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: red;
+        font-size: 20px;
+    }
+
+    .tutorial-icon {
+        z-index: 5;
+        height: 60px;
+        width: 60px;
+        fill: white;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        margin: 30px;
     }
 
 }
