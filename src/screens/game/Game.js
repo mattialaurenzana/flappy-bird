@@ -164,7 +164,7 @@ function Game() {
     return (
         <>
             <BgContainer
-                moonanimation={'moonanimation'}
+                moonanimation={gameHasStarted && 'moonanimation'}
             />
             <div className="game-container" onClick={!gameover && handleClick}>
                 <Score
@@ -187,7 +187,6 @@ function Game() {
                         width={PILLAR_WIDTH}
                         height={bottomPillarHeight}
                         left={pillarLeft}
-
                     />
                     <Shuttle
                         top={state.shuttlePosition}

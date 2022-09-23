@@ -31,11 +31,27 @@
 .title-gameover{
     position: absolute;
     top: 40px;
-    font-size: 30px;
+    font-size: 40px;
     color: white;
+}
+
+.best-score{
+    font-size: 17px;
 }
 
 .score-gameover{
     font-size: 30px;
     color: black;
+}
+
+@media (min-height:800px){
+    .score-gameover{
+        font-size: 40px;
+    }
+    .title-gameover{
+        font-size: 50px;
+    }
+    .best-score{
+        font-size: 20px;
+    }
 }

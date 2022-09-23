@@ -38,7 +38,7 @@ function Score(props) {
 
 
     return (
-        <div className="score-text">Score: {score}</div>
+        <div className="score-text">Punteggio: {score}</div>
 
     );
 }

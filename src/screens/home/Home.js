@@ -1,11 +1,11 @@
 import BgContainer from "../../components/ui/bgcontainer/BgContainer";
 import Tutorial from "../../components/ui/tutorial/Tutorial";
 import { useState, useEffect } from "react";
-import {Howl,Howler} from 'howler';
+import { Howl, Howler } from 'howler';
 import "./Home.css";
 import Button from "../../components/ui/button/Button";
 import InputBox from "../../components/ui/inputbox/InputBox";
-import { AiFillQuestionCircle } from "react-icons/ai";
+import { AiFillQuestionCircle, AiFillCloseCircle } from "react-icons/ai";
 import { BiErrorAlt } from "react-icons/bi"
 import { Link, useNavigate, useNavigation, useParams } from "react-router-dom";
 import SCREENS from "../../routes/screenName";
@@ -14,10 +14,10 @@ import SCREENS from "../../routes/screenName";
 
 function Home() {
 
-  
+
 
   // const {Howl, Howler} = require('howler');
-  
+
 
   const navigate = useNavigate();
   let inputString = "";
@@ -38,19 +38,19 @@ function Home() {
     });
   }
 
-  function playSound(){
+  function playSound() {
 
     const sound = new Howl({
-      src : ['../../assets/audio/home-audio.mp3'],
+      src: ['../../assets/audio/home-audio.mp3'],
     })
     sound.play();
-  
+
   }
 
-  function openWindowTutorial() {
+  function seeWindowTutorial() {
     setState({
       ...state,
-      tutIsVisible: true,
+      tutIsVisible: !state.tutIsVisible,
     });
   }
 
@@ -63,11 +63,11 @@ function Home() {
     inputString = e.target.value;
   }
 
-  function handleFocus(){
-    if(state.emptyInput){
+  function handleFocus() {
+    if (state.emptyInput) {
       setState({
         ...state,
-        emptyInput : false
+        emptyInput: false
       })
     }
   }
@@ -86,9 +86,9 @@ function Home() {
       currentUser.username = inputString;
       // localStorageRanking.push(currentUser);
       // localStorage.setItem('ranking',JSON.stringify(localStorageRanking));
-      navigate(SCREENS.game,{
-        state : {
-          username : currentUser.username.toLowerCase()
+      navigate(SCREENS.game, {
+        state: {
+          username: currentUser.username.toLowerCase()
         }
       });
     }
@@ -98,7 +98,11 @@ function Home() {
   return (
     <>
       <BgContainer />
-      {state.tutIsVisible && <Tutorial callback={closeWindowTutorial} />}
+      {state.tutIsVisible &&
+        <>
+        <h1 className="title-tutorial">Tutorial</h1>
+          <Tutorial callback={closeWindowTutorial} />
+        </>}
 
       {!state.tutIsVisible &&
         <div className="home-container" onClick={playSound}>
@@ -109,11 +113,11 @@ function Home() {
               src={require("../../assets/image/sprite-sheet.png")}
             />
           </div>
-         <div className="input-banner">
-          <InputBox 
-              placeholder={"Inserire username..."} 
-              callbackChange = {handleInput}
-              callbackFocus = {handleFocus}
+          <div className="input-banner">
+            <InputBox
+              placeholder={"Inserire username..."}
+              callbackChange={handleInput}
+              callbackFocus={handleFocus}
             />
             {
               state.emptyInput &&
@@ -129,10 +133,18 @@ function Home() {
         </div>
       }
 
-      <AiFillQuestionCircle
-        className="tutorial-icon"
-        onClick={openWindowTutorial}
-      />
+      {!state.tutIsVisible ?
+        <AiFillQuestionCircle
+          className="tutorial-icon white-icon"
+          onClick={seeWindowTutorial}
+        /> :
+        <AiFillCloseCircle
+          className="tutorial-icon red-icon"
+          onClick={seeWindowTutorial}
+        />
+
+      }
+
     </>
   );
 }

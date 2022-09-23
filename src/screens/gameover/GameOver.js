@@ -62,24 +62,22 @@ function GameOver() {
             <div className="gameover-container">
                 <h1 className='title-gameover'>Game Over!</h1>
                 <div className={`gameover-card`}>
-                    <div className="score-gameover">Score : {score}</div>
-                    <div>Best Score: {bestScore}</div>
-                    <Button
-                        callback={goToHome}
-                        label={'Home'}
-                    />
+                    <div className="score-gameover">Punteggio : {score}</div>
+                    <div className=" best-score">Miglior punteggio : {bestScore}</div>
                     <Button
                         callback={goToGame}
                         label={'Rigioca'}
                     />
                     <Button
                         callback={goToRank}
-                        label={'Ranking'}
+                        label={'Classifica'}
+                    />
+                    <Button
+                        callback={goToHome}
+                        label={'Home'}
                     />
                 </div>
             </div>
-
-
         </>
     )
 };
