@@ -31,7 +31,6 @@ function Score(props) {
         checkLevel();
         props.callbackLevel(level)
 
-
         return () => clearInterval(interval);
 
 

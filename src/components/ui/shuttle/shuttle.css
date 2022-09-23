@@ -10,7 +10,7 @@
 }
 
 .explosion {
-    animation: moveSpriteSheet 2s steps(7) forwards;
+    animation: moveSpriteSheet 0.8s steps(7) forwards;
     top: calc(-288px * var(--pixel-size-game));
 }
 

@@ -9,16 +9,7 @@ import SCREENS from "../../routes/screenName";
 
 function Game() {
 
-    let currentUser = {};
     const navigate = useNavigate()
-    let localstorageArray = localStorage.getItem('ranking')
-    let localStorageRanking = !!localstorageArray ? JSON.parse(localstorageArray) : []
-    const arrayMoonAnimation = [
-        'moonanimationlevel1',
-        'moonanimationlevel2',
-        'moonanimationlevel3',
-        'moonanimationlevel4',
-    ]
     const GAME_HEIGHT = 550;
     const GAME_WIDTH = 375;
     const SHUTTLE_SIZE = 58;
@@ -46,19 +37,16 @@ function Game() {
     ]
     const location = useLocation();
     const [username, setUsername] = useState('');
-    const [finalscore, setFinalScore] = useState(0)
     const [gameover, setgameover] = useState(false)
     const [pillarHeight, setPillarHeight] = useState(200);
     const [pillarLeft, setPillarLeft] = useState(GAME_WIDTH);
     const [gameHasStarted, setGameHasStarted] = useState(false);
     const [pillarGap, setPillarGap] = useState(arrayLevel[0].pillarGap);
     const [pillarSpeed, setPillarSpeed] = useState(arrayLevel[0].pillarSpeed);
-    const [level, setLevel] = useState(0)
     const bottomPillarHeight = GAME_HEIGHT - pillarGap - pillarHeight;
     const [state, setState] = useState({
         shuttlePosition: 250,
         shuttleClass: '',
-        classMoon: arrayMoonAnimation[level]
     })
 
 
@@ -116,59 +104,33 @@ function Game() {
         if ((groundCollision) || (pillarLeft >= 0 && pillarLeft <= PILLAR_WIDTH && (topCollision || bottomCollision))) {
             setgameover(true)
             setGameHasStarted(false);
-            
             setState({
                 ...state,
                 shuttleClass: 'explosion'
             })
-            setTimeout(() => {
-                storeData();
-                setTimeout(() => {
-                    navigate(SCREENS.gameover, {
-                        state: {
-                            username: username,
-                            score: finalscore
-                        }
-                    })
-                }, 200);
-            }, 2000);
+
         }
 
     }, [state.shuttlePosition, pillarHeight, bottomPillarHeight, pillarLeft]);
 
-     
+
 
     function storeScore(e) {
-        setFinalScore(e)
-    }
-
-
-    function storeData() {
-        let presence = false
-        localStorageRanking.forEach(e => {
-            if (e.username === username) {
-                presence = true
-                if (finalscore > e.score) {
-                    e.score = finalscore
+        setTimeout(() => {
+            navigate(SCREENS.gameover, {
+                state: {
+                    username: username,
+                    score: e
                 }
-            }
-        });
-        if (!presence) {
-            currentUser.username = username
-            currentUser.score = finalscore
-            localStorageRanking.push(currentUser)
-        }
-        localStorage.setItem('ranking', JSON.stringify(localStorageRanking))
+            })
+        }, 800);
     }
+
+
+    
 
 
     function changeDifficulty(level) {
-        setLevel(level)
-        setState({
-            ...state,
-            classMoon: arrayMoonAnimation[level]
-        })
-        console.log(arrayMoonAnimation[level]);
         setPillarGap(arrayLevel[level].pillarGap)
         setPillarSpeed(arrayLevel[level].pillarSpeed)
     }
@@ -202,12 +164,11 @@ function Game() {
     return (
         <>
             <BgContainer
-                moonanimation={state.classMoon}
+                moonanimation={'moonanimation'}
             />
-            <div className="game-container" onClick={handleClick}>
+            <div className="game-container" onClick={!gameover && handleClick}>
                 <Score
                     gameHasStarted={gameHasStarted}
-                    currentUser={localStorageRanking}
                     gameover={gameover}
                     callbackScore={storeScore}
                     callbackLevel={changeDifficulty}

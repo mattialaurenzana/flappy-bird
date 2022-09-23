@@ -1,4 +1,3 @@
-import { SpriteAnimator } from "react-sprite-animator";
 import BgContainer from "../../components/ui/bgcontainer/BgContainer";
 import Tutorial from "../../components/ui/tutorial/Tutorial";
 import { useState, useEffect } from "react";

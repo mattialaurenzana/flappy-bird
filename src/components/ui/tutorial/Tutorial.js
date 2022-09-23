@@ -16,9 +16,17 @@ function Tutorial(props){
                 <div className='close-tutorial'>
                     <AiFillCloseCircle className='close-icon' onClick={closeTut}/>
                 </div>
-                Questo è il tutorial del gioco
+                Benvenuto!
+                <br/>
+                Il pilota della navicella spaziale Enterprise é rimasto ferito in battaglia. Abbiamo bisogno di te per superare le rocce appuntite di questo pianeta.
+                <br/>
+                Prendi il comando e riportaci a casa!
+                <br/>
+                <br/>
+                Tutorial:
+                <br/>
+                Clicca sullo schermo per far saltare la navicella ma attento alle rocce che vi faranno esplodere!
             </div>
-        
         
         </>
 
