@@ -97,9 +97,7 @@ function Ranking() {
 
                     </React.Fragment>
                   )
-                })
-
-              }
+                })}
 
             </tbody>
           </table>

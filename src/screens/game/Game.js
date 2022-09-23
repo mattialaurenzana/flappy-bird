@@ -116,6 +116,7 @@ function Game() {
         if ((groundCollision) || (pillarLeft >= 0 && pillarLeft <= PILLAR_WIDTH && (topCollision || bottomCollision))) {
             setgameover(true)
             setGameHasStarted(false);
+            
             setState({
                 ...state,
                 shuttleClass: 'explosion'
@@ -134,6 +135,8 @@ function Game() {
         }
 
     }, [state.shuttlePosition, pillarHeight, bottomPillarHeight, pillarLeft]);
+
+     
 
     function storeScore(e) {
         setFinalScore(e)
