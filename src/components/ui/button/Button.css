@@ -9,6 +9,10 @@
     border-radius: 40px;
 }
 
+ .button:hover{
+    cursor: pointer;
+} 
+
 @media screen and (min-height:700px){
     .button{
         background-color: #2E0249;
