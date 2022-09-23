@@ -2,10 +2,10 @@
 import BgContainer from "../../components/ui/bgcontainer/BgContainer";
 import Tutorial from "../../components/ui/tutorial/Tutorial";
 import { useState, useEffect } from "react";
-import {Howl,Howler} from 'howler';
 import "./Home.css";
 import Button from "../../components/ui/button/Button";
 import InputBox from "../../components/ui/inputbox/InputBox";
+import ReactHowler from 'react-howler';
 import { AiFillQuestionCircle } from "react-icons/ai";
 import { BiErrorAlt } from "react-icons/bi"
 import { Link, useNavigate, useNavigation, useParams } from "react-router-dom";
@@ -14,11 +14,8 @@ import SCREENS from "../../routes/screenName";
 
 
 function Home() {
-
   
-
-  // const {Howl, Howler} = require('howler');
-  
+  const [play,setPlay] = useState(false);
 
   const navigate = useNavigate();
   let inputString = "";
@@ -41,10 +38,7 @@ function Home() {
 
   function playSound(){
 
-    const sound = new Howl({
-      src : ['../../assets/audio/home-audio.mp3'],
-    })
-    sound.play();
+    setPlay(true);
   
   }
 
@@ -98,6 +92,14 @@ function Home() {
 
   return (
     <>
+    
+    {
+      play && 
+      <ReactHowler
+        src='../../assets/audio/home-audio.mp3'
+        playing={play}
+      />
+    }
       <BgContainer />
       {state.tutIsVisible && <Tutorial callback={closeWindowTutorial} />}
 
