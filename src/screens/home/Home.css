@@ -3,7 +3,7 @@
     margin-top: 80px;
 }
 
-.title-tutorial{
+.title-tutorial {
     position: absolute;
     top: 0;
     color: white;
@@ -31,11 +31,11 @@
     margin: 30px;
 }
 
-.white-icon{
+.white-icon {
     fill: white;
 }
 
-.red-icon{
+.red-icon {
     fill: red;
     stroke: white;
 }
@@ -63,13 +63,13 @@
     image-rendering: pixelated;
 }
 
-.input-banner{
+.input-banner {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.error-banner{
+.error-banner {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -86,7 +86,7 @@
     }
 }
 
-@media ((min-height:800px) and (min-width:500px)){
+@media ((min-height:800px) and (min-width:500px)) {
     .home-container {
         position: absolute;
         height: 100vh;
@@ -99,18 +99,19 @@
         gap: 35px;
     }
 
-    .title{
-        font-size: 50px;
-    }
-    .title-tutorial{
+    .title {
         font-size: 50px;
     }
 
-    :root{
+    .title-tutorial {
+        font-size: 50px;
+    }
+
+    :root {
         --pixel-size: 3.0
     }
 
-    .error-banner{
+    .error-banner {
         display: flex;
         align-items: center;
         gap: 10px;
@@ -119,13 +120,9 @@
     }
 
     .tutorial-icon {
-        z-index: 5;
         height: 60px;
         width: 60px;
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        margin: 30px;
+        top: 0;
     }
 
 }
