@@ -31,7 +31,7 @@ function Ranking() {
             <thead>
               <tr>
                 <th>Posizione</th>
-                <th>Utente</th>
+                <th className="td-username">Utente</th>
                 <th>Miglior punteggio</th>
               </tr>
             </thead>
@@ -43,7 +43,7 @@ function Ranking() {
                     <React.Fragment key={key + Date.now()}>
                       <tr>
                         <td>{key + 1}</td>
-                        <td>{el.username}</td>
+                        <td className="td-username">{el.username}</td>
                         <td>{el.score}</td>
                       </tr>
 

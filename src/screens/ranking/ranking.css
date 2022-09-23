@@ -1,4 +1,4 @@
-.ranking{
+.ranking {
     width: 60vw;
     height: 40vh;
     display: flex;
@@ -6,14 +6,14 @@
     gap: 10px;
     background-color: #2E0249;
     border: 2px solid black;
-    /* border-radius: 20px; */
+    border-radius: 20px;
     padding: 0 20px;
     color: white;
     overflow-x: hidden;
     overflow-y: scroll;
 }
 
-.rank-container{
+.rank-container {
     position: absolute;
     height: 100vh;
     width: 100vw;
@@ -23,44 +23,53 @@
     gap: 40px;
 }
 
-.empty-ranking{
+.empty-ranking {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-table{
+table {
     width: 55vw;
-}
-
-th{
+    border-radius: 20px;
     border: 3px solid white;
 }
 
-td{
-    border: 1px solid white;
+.th-username {
+    border-right: 2px solid white;
+    border-left: 2px solid white;
+}
+
+.td-username {
+    border-right: 2px solid white;
+    border-left: 2px solid white;
+}
+
+td {
+    border-top: 2px solid white;
     padding: 3px;
 }
 
-.title-ranking{
+.title-ranking {
     color: white;
 }
 
-@media((min-height:800px) and (min-width:500px)){
-    th{
-        border: 3px solid white;
+@media((min-height:800px) and (min-width:500px)) {
+    th {
         font-size: 30px;
     }
-    td{
-        border: 1px solid white;
+
+    td {
         padding: 10px;
         font-size: 20px;
     }
-    .title-ranking{
+
+    .title-ranking {
         color: white;
         font-size: 60px;
     }
-    .rank-container{
+
+    .rank-container {
         position: absolute;
         height: 100vh;
         width: 100vw;
