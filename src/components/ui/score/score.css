@@ -2,11 +2,9 @@
     color: white;
     margin-top: 30px;
     font-size: 35px;
-    /* position: absolute;
-    top: 50px; */
 }
 
-@media ((min-height:800px) and (min-width:500px)){
+@media ((min-height:800px) and (min-width:500px)) {
     .score-text {
         color: white;
         margin-top: 30px;

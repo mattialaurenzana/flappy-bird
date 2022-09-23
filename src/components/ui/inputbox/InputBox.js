@@ -6,13 +6,13 @@ function InputBox(props) {
 
   function changeInput(e) {
     if (!!props.callbackChange) {
-            props.callbackChange(e);
+      props.callbackChange(e);
     }
   }
 
-  function handleFocus(e){
-    if(!!props.callbackFocus)
-    props.callbackFocus(e);
+  function handleFocus(e) {
+    if (!!props.callbackFocus)
+      props.callbackFocus(e);
   }
 
   return (

@@ -19,7 +19,7 @@
     overflow: hidden;
 }
 
-@media ((min-height:800px)){
+@media ((min-height:712px)){
     .game-box {
         position: absolute;
         bottom: 80px;

@@ -12,9 +12,7 @@ function Pillar(props) {
     return (
         <>
             <div className={` pillar-container ${props.top === 0 ? 'pillartop' : 'pillarbottom'}`}
-                style={
-                    MY_STYLE
-                }
+                style={MY_STYLE}
             >
             </div>
 

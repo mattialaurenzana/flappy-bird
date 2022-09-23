@@ -23,6 +23,10 @@ function Game() {
         },
         {
             pillarGap: 160,
+            pillarSpeed: 4.5
+        },
+        {
+            pillarGap: 150,
             pillarSpeed: 5
         },
         {

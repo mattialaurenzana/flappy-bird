@@ -1,14 +1,14 @@
-.pillar-container{
+.pillar-container {
     position: relative;
     background-size: cover;
     background-repeat: no-repeat;
 }
 
-.pillartop{
+.pillartop {
     background: url('../../../assets/image/pillartop.png');
     background-position: bottom;
 }
 
-.pillarbottom{
+.pillarbottom {
     background: url('../../../assets/image/pillarbottom.png');
 }

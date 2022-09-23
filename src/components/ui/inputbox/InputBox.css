@@ -1,23 +1,23 @@
-.input{
+.input {
     height: 20px;
     width: 200px;
     padding: 10px;
     border-radius: 40px;
 }
-.input::placeholder{
+
+.input::placeholder {
     font-family: 'Audiowide';
 }
 
-
-@media screen and (min-height:700px){
-    .input{
+@media screen and (min-height:700px) {
+    .input {
         height: 40px;
         width: 300px;
         padding: 15px;
         border-radius: 40px;
     }
-    .input::placeholder{
+
+    .input::placeholder {
         font-size: 20px;
-        font-family: 'Audiowide';
     }
 }

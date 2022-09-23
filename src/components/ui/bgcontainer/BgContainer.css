@@ -20,11 +20,6 @@
   background-repeat: no-repeat;
 }
 
-.bganimation {
-  animation: moving-bg 20s ease infinite;
-
-}
-
 .content-block {
   position: absolute;
   width: 100%;
@@ -44,25 +39,9 @@
   overflow: hidden;
 }
 
-.moonanimation{
+.moonanimation {
   animation: moving-images 50s linear infinite;
 }
-
-
-@keyframes moving-bg {
-  0% {
-    scale: 1;
-  }
-
-  50% {
-    scale: 1.3;
-  }
-
-  100% {
-    scale: 1;
-  }
-}
-
 
 @keyframes moving-images {
   from {

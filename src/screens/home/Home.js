@@ -4,17 +4,18 @@ import { useState, useEffect } from "react";
 import "./Home.css";
 import Button from "../../components/ui/button/Button";
 import InputBox from "../../components/ui/inputbox/InputBox";
-import ReactHowler from 'react-howler';
 import { AiFillQuestionCircle, AiFillCloseCircle } from "react-icons/ai";
 import { BiErrorAlt } from "react-icons/bi"
 import { Link, useNavigate, useNavigation, useParams } from "react-router-dom";
 import SCREENS from "../../routes/screenName";
+import { Howl, Howler } from 'howler'
+import homeAudio from '../../assets/audio/home-audio.mp3'
 
 
 
 function Home() {
-  
-  const [play,setPlay] = useState(false);
+
+  const [play, setPlay] = useState(false);
 
   const navigate = useNavigate();
   let inputString = "";
@@ -35,10 +36,13 @@ function Home() {
     });
   }
 
-  function playSound() {
-
-    setPlay(true);
-  
+  const playSound = () => {
+    console.log('audio');
+    let sound = new Howl({
+      src: [homeAudio],
+      volume: 0.3
+    })
+    sound.play()
   }
 
   function seeWindowTutorial() {
@@ -91,18 +95,11 @@ function Home() {
 
   return (
     <>
-    
-    {
-      play && 
-      <ReactHowler
-        src='../../assets/audio/home-audio.mp3'
-        playing={play}
-      />
-    }
+
       <BgContainer />
       {state.tutIsVisible &&
         <>
-        <h1 className="title-tutorial">Tutorial</h1>
+          <h1 className="title-tutorial">Tutorial</h1>
           <Tutorial callback={closeWindowTutorial} />
         </>}
 

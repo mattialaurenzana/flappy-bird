@@ -24,9 +24,9 @@ function Score(props) {
                 setScore(score + 1);
             }, 1000);
         } else {
-            if (props.gameover) {
+            if (props.gameover)
                 props.callbackScore(score)
-            }
+
         }
         checkLevel();
         props.callbackLevel(level)
@@ -39,7 +39,6 @@ function Score(props) {
 
     return (
         <div className="score-text">Punteggio: {score}</div>
-
     );
 }
 

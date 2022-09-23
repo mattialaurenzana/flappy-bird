@@ -2,7 +2,6 @@ import './BgContainer.css'
 import '../tutorial/Tutorial';
 
 function BgContainer(props) {
-
     return (
         <>
             <div id="particles-js" className="container">
