@@ -8,6 +8,7 @@ import BgContainer from "../../components/ui/bgcontainer/BgContainer";
 import SCREENS from "../../routes/screenName";
 import { Howl, Howler } from 'howler';
 import Whoosh from '../../assets/audio/whoosh.mp3'
+import explosion from '../../assets/audio/explosion.mp3'
 
 function Game() {
 
@@ -110,6 +111,11 @@ function Game() {
         if ((groundCollision) || (pillarLeft >= 0 && pillarLeft <= PILLAR_WIDTH && (topCollision || bottomCollision))) {
             setgameover(true)
             setGameHasStarted(false);
+            let explosionSound = new Howl({
+                src: [explosion],
+                volume: 0.2,
+            })
+            explosionSound.play()
             setState({
                 ...state,
                 shuttleClass: 'explosion'
@@ -131,10 +137,6 @@ function Game() {
             })
         }, 800);
     }
-
-
-    
-
 
     function changeDifficulty(level) {
         setPillarGap(arrayLevel[level].pillarGap)
@@ -161,19 +163,14 @@ function Game() {
         playSound();
         if (!state.gameover) {
             let newShuttlePosition = state.shuttlePosition - JUMP_HEIGHT;
-            let shuttleclass = 'shuttleup';
-        
             if (!gameHasStarted) {
                 setGameHasStarted(true)
-                shuttleclass = 'shuttledown'
             } else if (newShuttlePosition < 0) {
-                shuttleclass = 'shuttleup'
                 newShuttlePosition = 0
             }
             setState({
                 ...state,
                 shuttlePosition: newShuttlePosition,
-                shuttleClass: shuttleclass
             })
         }
 

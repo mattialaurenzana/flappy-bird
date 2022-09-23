@@ -10,15 +10,16 @@ function BgContainer(props) {
     const playSound = () => {
         let music = new Howl({
             src: [homeAudio],
-            volume: 0.1
+            volume: 0.1,
+            loop: true
         })
         music.play()
         if (!sound) {
-  
+
             sound = true
         }
     }
-  
+
 
     return (
         <>
@@ -26,7 +27,7 @@ function BgContainer(props) {
                 <div className={`bg-container ${props.bganimation}`}></div>
             </div>
             <div className='content-block'>
-                <div  className={`moon-container ${props.moonanimation}`}>
+                <div className={`moon-container ${props.moonanimation}`}>
                 </div>
             </div>
         </>
