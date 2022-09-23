@@ -33,3 +33,9 @@
 .close-tutorial:hover{
     cursor: pointer;
 }
+
+@media((min-height:800px) and (min-width:500px)) {
+    .tutorial-container{
+        font-size: 20px;
+    }
+}
