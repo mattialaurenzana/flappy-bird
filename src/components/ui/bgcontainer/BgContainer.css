@@ -43,6 +43,16 @@
   animation: moving-images 50s linear infinite;
 }
 
+.sound-icon {
+  z-index: 5;
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 30px;
+}
+
 @keyframes moving-images {
   from {
     left: 0;
