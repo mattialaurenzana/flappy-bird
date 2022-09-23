@@ -13,9 +13,9 @@ function BgContainer(props) {
             volume: 0.1,
             loop: true
         })
-        music.play()
-        if (!sound) {
 
+        if (!sound) {
+            music.play()
             sound = true
         }
     }
