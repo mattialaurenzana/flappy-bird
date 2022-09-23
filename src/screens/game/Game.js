@@ -187,6 +187,7 @@ function Game() {
 
 
     function changeDifficulty(level) {
+        console.log(level);
         setPillarGap(arrayLevel[level].pillarGap)
         setPillarSpeed(arrayLevel[level].pillarSpeed)
     }
@@ -228,11 +229,6 @@ function Game() {
     // }
 
 
-    function changeDifficulty(level) {
-        setPillarGap(arrayLevel[level].pillarGap)
-        setPillarSpeed(arrayLevel[level].pillarSpeed)
-    }
-
     return (
         <>
             <BgContainer
@@ -244,7 +240,7 @@ function Game() {
                     gameHasStarted={gameHasStarted}
                     currentUser={localStorageRanking}
                     gameover={gameover}
-                    callback={storeScore}
+                    callbackScore={storeScore}
                     callbackLevel = {changeDifficulty}
                 />
 

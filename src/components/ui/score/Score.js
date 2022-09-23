@@ -22,11 +22,11 @@ function Score(props) {
                 setScore(score + 1);
             }, 1000);
         } else {
-            checkLevel();
             if (props.gameover) {
                 props.callbackScore(score)
             }
         }
+        checkLevel();
         props.callbackLevel(level)
 
 
