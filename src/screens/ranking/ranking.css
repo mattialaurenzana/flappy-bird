@@ -23,6 +23,12 @@
     gap: 40px;
 }
 
+.empty-ranking{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 table{
     width: 55vw;
 }
