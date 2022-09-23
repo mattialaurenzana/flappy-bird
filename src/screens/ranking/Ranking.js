@@ -83,7 +83,7 @@ function Ranking() {
                         <th>Score</th>
                     </tr>
                 </thead>
-
+ 
                 <tbody>
                    { 
                     getRanking.map((el,key) => {
