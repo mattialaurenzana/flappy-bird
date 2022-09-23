@@ -22,25 +22,24 @@ function Score(props) {
                 setScore(score + 1);
             }, 1000);
         } else {
-            checkLevel();
             if (props.gameover) {
-                console.log('overrr');
-                props.callback(score)
+                props.callbackScore(score)
             }
-}
+        }
+        checkLevel();
+        props.callbackLevel(level)
 
 
-
-return () => clearInterval(interval);
+        return () => clearInterval(interval);
 
 
     }, [props.gameHasStarted, score]);
 
 
-return (
-    <div className="score-text">Score: {score}</div>
+    return (
+        <div className="score-text">Score: {score}</div>
 
-);
+    );
 }
 
 export default Score

@@ -166,7 +166,6 @@ function Game() {
      
 
     function storeScore(e) {
-        console.log('score', e);
         setFinalScore(e)
     }
 
@@ -184,21 +183,14 @@ function Game() {
         if (!presence) {
             currentUser.username = username
             currentUser.score = finalscore
-            // console.log('currentuser score', currentUser.score);
             localStorageRanking.push(currentUser)
         }
         localStorage.setItem('ranking', JSON.stringify(localStorageRanking))
     }
 
 
-    // function updateScore(e) {
-    //    setScore(e.score);
-    //    changeDifficulty(e.level)
-    //    console.log(score);
-
-    // }
-
     function changeDifficulty(level) {
+        console.log(level);
         setPillarGap(arrayLevel[level].pillarGap)
         setPillarSpeed(arrayLevel[level].pillarSpeed)
     }
@@ -240,11 +232,6 @@ function Game() {
     // }
 
 
-    function changeDifficulty(level) {
-        setPillarGap(arrayLevel[level].pillarGap)
-        setPillarSpeed(arrayLevel[level].pillarSpeed)
-    }
-
     return (
         <>
             <BgContainer
@@ -256,7 +243,8 @@ function Game() {
                     gameHasStarted={gameHasStarted}
                     currentUser={localStorageRanking}
                     gameover={gameover}
-                    callback={storeScore}
+                    callbackScore={storeScore}
+                    callbackLevel = {changeDifficulty}
                 />
 
                 <div className="game-box">
