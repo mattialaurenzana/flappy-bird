@@ -1,7 +1,8 @@
-import { SpriteAnimator } from "react-sprite-animator";
+
 import BgContainer from "../../components/ui/bgcontainer/BgContainer";
 import Tutorial from "../../components/ui/tutorial/Tutorial";
 import { useState, useEffect } from "react";
+import {Howl,Howler} from 'howler';
 import "./Home.css";
 import Button from "../../components/ui/button/Button";
 import InputBox from "../../components/ui/inputbox/InputBox";
@@ -10,7 +11,15 @@ import { BiErrorAlt } from "react-icons/bi"
 import { Link, useNavigate, useNavigation, useParams } from "react-router-dom";
 import SCREENS from "../../routes/screenName";
 
+
+
 function Home() {
+
+  
+
+  // const {Howl, Howler} = require('howler');
+  
+
   const navigate = useNavigate();
   let inputString = "";
 
@@ -28,6 +37,15 @@ function Home() {
       ...state,
       tutIsVisible: false,
     });
+  }
+
+  function playSound(){
+
+    const sound = new Howl({
+      src : ['../../assets/audio/home-audio.mp3'],
+    })
+    sound.play();
+  
   }
 
   function openWindowTutorial() {
@@ -84,7 +102,7 @@ function Home() {
       {state.tutIsVisible && <Tutorial callback={closeWindowTutorial} />}
 
       {!state.tutIsVisible &&
-        <div className="home-container">
+        <div className="home-container" onClick={playSound}>
           <h1 className="title">Flying shuttle</h1>
           <div className="img-container">
             <img
