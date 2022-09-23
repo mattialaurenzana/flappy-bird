@@ -118,6 +118,8 @@ function Home() {
               callbackChange={handleInput}
               callbackFocus={handleFocus}
             />
+
+            {/* banner che viene visualizzato se l'Utente non inserisce nulla nell'input */}
             {
               state.emptyInput &&
               <div className="error-banner">
