@@ -6,6 +6,8 @@ import './game.css'
 import { useLocation, useNavigate } from "react-router-dom";
 import BgContainer from "../../components/ui/bgcontainer/BgContainer";
 import SCREENS from "../../routes/screenName";
+import { Howl, Howler } from 'howler';
+import Whoosh from '../../assets/audio/whoosh.mp3'
 
 function Game() {
 
@@ -146,9 +148,21 @@ function Game() {
 
     // jump shuttle
     const handleClick = () => {
+
+        const playSound = () => {
+            let music = new Howl({
+                src: [Whoosh],
+                volume: 0.4
+            })
+            music.play();
+          
+        }
+
+        playSound();
         if (!state.gameover) {
             let newShuttlePosition = state.shuttlePosition - JUMP_HEIGHT;
-            let shuttleclass = 'shuttleup'
+            let shuttleclass = 'shuttleup';
+        
             if (!gameHasStarted) {
                 setGameHasStarted(true)
                 shuttleclass = 'shuttledown'
