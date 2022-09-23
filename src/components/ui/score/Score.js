@@ -13,6 +13,8 @@ function Score(props) {
             level = 2
         if (score > 30)
             level = 3
+        if (score > 40)
+            level = 4
     }
 
     useEffect(() => {

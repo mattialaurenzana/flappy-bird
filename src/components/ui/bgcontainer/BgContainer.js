@@ -8,7 +8,7 @@ function BgContainer(props) {
                 <div className={`bg-container ${props.bganimation}`}></div>
             </div>
             <div className='content-block'>
-                <div className={`moon-container ${props.moonanimation}`}>
+                <div data-animation className={`moon-container ${props.moonanimation}`}>
                 </div>
             </div>
         </>
