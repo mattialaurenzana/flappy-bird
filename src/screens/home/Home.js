@@ -35,11 +35,11 @@ function Home() {
     });
   }
 
-  function playSound() {
+  // function playSound() {
 
-    setPlay(true);
+  //   setPlay(true);
   
-  }
+  // }
 
   function seeWindowTutorial() {
     setState({
@@ -92,14 +92,18 @@ function Home() {
   return (
     <>
     
-    {
+    {/* {
       play && 
       <ReactHowler
         src='../../assets/audio/home-audio.mp3'
         playing={play}
       />
-    }
-      <BgContainer />
+    } */}
+
+
+
+    {/* componente che contiene il background con lo spazio e la luna in basso */}
+      <BgContainer /> 
       {state.tutIsVisible &&
         <>
         <h1 className="title-tutorial">Tutorial</h1>
@@ -121,6 +125,8 @@ function Home() {
               callbackChange={handleInput}
               callbackFocus={handleFocus}
             />
+
+            {/* banner che viene visualizzato se l'Utente non inserisce nulla nell'input */}
             {
               state.emptyInput &&
               <div className="error-banner">
